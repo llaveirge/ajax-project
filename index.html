@@ -1,18 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
+
+  <header class="drop-shadow">
+    <div class="container">
+      <div class="row">
+        <div class="col-full display-flex align-items-baseline justify-space-between">
+          <h1 class="nav-header-text"><i id="palette-icon" class="fas fa-palette fa-xs"></i>Discover</h1>
+          <nav>
+            <i id="must-see-icon" class="fas fa-list-ul fa-lg"></i>
+          </nav>
+        </div>
+      </div>
+    </div>
   </header>
+
   <main>
+    <div class="container">
+
+      <div data-view="search-form">
+        <div class="row">
+          <div class="col-full display-flex align-items-center justify-center">
+            <div class="hero-img-container">
+              <img src="images/met-logo.jpg" class="hero-img" alt="The Met Logo" title="The Met">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-full">
+            <h2 class="discover-heading-text">Discover<br>
+              The Metropolitan Museum of Art</h2>
+            <hr>
+          </div>
+        </div>
+        <div class="search-div">
+          <div class="row">
+            <div class="col-full">
+              <form id="form" class="display-flex justify-center">
+                <div class="search-wrapper display-flex align-items-center">
+                  <i class="fas fa-search fa-sm"></i>
+                  <label>
+                    <input id="search" name="q" type="search" size="80">
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-full display-flex justify-center">
+            <div class="p-container">
+              <p class="discover-text">Enter a keyword or phrase to discover unique objects within The Metropolitan Museum of Art collections.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
