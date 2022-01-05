@@ -30,7 +30,6 @@ h2.discover-heading-text {
 hr {
   border: 1px inset #1b3767;
   border-bottom: none;
-  width: 31.125rem;
   margin-bottom: 3.2rem;
 }
 
@@ -52,7 +51,8 @@ input:focus {
 
 .search-wrapper {
   border: 2px solid #1b3767;
-  max-width: 48rem;
+  max-width: 44.4rem;
+  min-width: 21.69rem;
   height: 2.8rem;
   margin-bottom: 1.25rem;
   background-color: #f5f5f5;

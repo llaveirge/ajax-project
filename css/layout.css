@@ -1,3 +1,7 @@
+body {
+  margin: 0 auto;
+}
+
 .container {
   max-width: 650px;
   margin: 0 auto;
@@ -13,6 +17,14 @@
   width: 100%;
 }
 
+hr {
+  width: 16.5rem;
+}
+
+input {
+  width: 18rem;
+}
+
 @media screen and (min-width: 750px) {
   .container {
     max-width: 950px;
@@ -25,6 +37,18 @@
 
   .column-half {
     width: 50%;
+  }
+
+  .search-wrapper {
+    width: 44.4rem;
+  }
+
+  hr {
+    width: 31.125rem;
+  }
+
+  input {
+    width: 39rem;
   }
 }
 
