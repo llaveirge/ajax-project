@@ -28,7 +28,8 @@ h2.discover-heading-text {
 }
 
 hr {
-  border: 1px inset #1b3767;
+  border: 1.2px inset #1b3767;
+  background-color: #1b3767;
   border-bottom: none;
   margin-bottom: 3.2rem;
 }
@@ -88,4 +89,5 @@ i.fa-search {
 .discover-text {
   text-align: center;
   line-height: 150%;
+  color: #1b3767;
 }
