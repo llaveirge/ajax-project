@@ -1,0 +1,73 @@
+.container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 0.25rem;
+}
+
+.col-full,
+.col-half {
+  width: 100%;
+}
+
+.p-container {
+  max-width: 26rem;
+}
+
+hr {
+  width: 16.5rem;
+}
+
+input {
+  width: 18rem;
+}
+
+@media screen and (min-width: 750px) {
+  .container {
+    max-width: 950px;
+  }
+
+  .col-full,
+  .col-half {
+    padding: 0 0.5rem;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+
+  .search-wrapper {
+    width: 44.4rem;
+  }
+
+  hr {
+    width: 31.125rem;
+  }
+
+  input {
+    width: 39rem;
+  }
+}
+
+.display-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-baseline {
+  align-items: baseline;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
