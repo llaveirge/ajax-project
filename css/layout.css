@@ -43,6 +43,10 @@ input {
     width: 31.125rem;
   }
 
+  hr.objects-hr {
+    width: 100%;
+  }
+
   input {
     width: 39rem;
   }
