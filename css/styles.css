@@ -34,16 +34,12 @@ hr {
   margin-bottom: 3.2rem;
 }
 
-i {
-  color: white;
-  padding: 0 0.8rem;
-}
-
 input {
   font-family: inherit;
   font-size: 1rem;
   border-style: none;
   background-color: #f5f5f5;
+  padding: 0.65rem 0.125rem;
 }
 
 input:focus {
@@ -54,13 +50,17 @@ input:focus {
   border: 2px solid #1b3767;
   max-width: 44.4rem;
   min-width: 21.69rem;
-  height: 2.8rem;
   margin-bottom: 1.25rem;
   background-color: #f5f5f5;
 }
 
 .search-wrapper:focus-within {
   border-color: #eb0029;
+}
+
+i {
+  color: white;
+  padding: 0 0.8rem;
 }
 
 .fa-list-ul {

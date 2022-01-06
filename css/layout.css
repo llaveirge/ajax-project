@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+.p-container {
+  max-width: 26rem;
+}
+
 hr {
   width: 16.5rem;
 }
@@ -42,10 +46,6 @@ input {
   input {
     width: 39rem;
   }
-}
-
-.p-container {
-  max-width: 26rem;
 }
 
 .display-flex {
