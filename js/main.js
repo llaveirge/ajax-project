@@ -12,7 +12,7 @@ function searchEventHandler(event) {
   query = $searchInput.value;
   $searchForm.reset();
 
-  // Function to retreive object ID numbers from The Met API and save in objIdArr array:
+  // Function to retrieve object ID numbers from The Met API and save in objIdArr array:
   var queryXhr = new XMLHttpRequest();
   queryXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/search?' + 'q=' + query + '&isOnView=true');
   queryXhr.responseType = 'json';
@@ -29,3 +29,22 @@ function searchEventHandler(event) {
 }
 
 $searchForm.addEventListener('submit', searchEventHandler);
+
+// Empty aray to store four random object IDs from the 'objIdArr' array:
+var randomObjIds = [];
+
+// Empty array to store the four random museum objects and their information:
+// var randomObjInfo = [];
+
+/* Select and remove 4 random Met museum object IDs out of the 'objIdArr' array
+and add them to the 'randomObjIds' array: */
+function randomize(array) {
+  for (var i = 0; i < 4; i++) {
+    var randomIndex = Math.floor(Math.random() * array.length);
+    randomObjIds.push(objIdArr.splice(randomIndex, 1));
+  }
+  return randomObjIds;
+  // remove ^return statement
+}
+
+randomize(objIdArr);
