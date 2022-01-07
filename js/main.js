@@ -48,10 +48,6 @@ function randomize(array) {
 
 randomize(objIdArr);
 
-// Testing random object Id from randomObjIds arr:
-var testId = randomObjIds[0];
-// console.log('random test ID number from array:', testId);
-
 // Retrieve randomized object data from Met API:
 function getObjectInfo(objectId) {
   var dataXhr = new XMLHttpRequest();
@@ -70,10 +66,14 @@ function getObjectInfo(objectId) {
     };
 
     randomObjInfo.push(objectData);
+    data.searchObjects.push(objectData);
 
   });
   dataXhr.send();
 
 }
 
-getObjectInfo(testId);
+// Loop through the randomObjIds array and call the 'getObjectInfo' function on each ID:
+for (var objId of randomObjIds) {
+  getObjectInfo(objId);
+}
