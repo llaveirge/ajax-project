@@ -21,7 +21,7 @@ h2 {
   font-family: "Libre Baskerville", serif;
   font-size: 1.75rem;
   color: #1b3767;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 }
 
 h2.discover-heading-text {
@@ -35,7 +35,7 @@ h2.discoveries-heading-text {
 h3 {
   font-size: 1.56rem;
   font-weight: 400;
-  margin: 1rem 0;
+  margin: 0.8rem 0;
 }
 
 hr {
@@ -46,7 +46,7 @@ hr {
 }
 
 hr.objects-hr {
-  border: 1px inset #1b3767;
+  border: 0.9px inset #1b3767;
   background-color: #1b3767;
   border-bottom: none;
   margin-bottom: 1rem;
@@ -94,11 +94,17 @@ i.fa-search {
 
 i.fa-plus {
   color: #eb0029;
-  font-size: 1.6rem;
+  font-size: 1.55rem;
 }
 
 i.fa-paint-brush {
   padding-left: 0.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  h2.discoveries-heading-text {
+    padding-left: 0;
+  }
 }
 
 .hero-img-container {

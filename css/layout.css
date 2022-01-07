@@ -18,7 +18,7 @@ hr {
 }
 
 hr.objects-hr {
-  width: 98%;
+  width: 95%;
 }
 
 input {
@@ -47,18 +47,27 @@ input {
     width: 31.125rem;
   }
 
+  hr.objects-hr {
+    width: 100%;
+  }
+
   input {
     width: 39rem;
   }
 
   .obj-img-container {
     padding-right: 1.8rem;
+    padding-left: 0;
+  }
+
+  ul {
+    margin: 0;
   }
 }
 
 ul {
   padding-inline-start: 0;
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 0.6rem;
 }
 
 li {
@@ -67,7 +76,7 @@ li {
 }
 
 .button-container {
-  padding-top: 2rem;
+  padding-top: 1.75rem;
 }
 
 .display-flex {
