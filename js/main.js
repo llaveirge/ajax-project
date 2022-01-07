@@ -34,7 +34,7 @@ $searchForm.addEventListener('submit', searchEventHandler);
 var randomObjIds = [];
 
 // Empty array to store the four random museum objects and their information:
-// var randomObjInfo = [];
+var randomObjInfo = [];
 
 /* Select and remove 4 random Met museum object IDs from the 'objIdArr' array
 and add them to the 'randomObjIds' array: */
@@ -68,7 +68,8 @@ function getObjectInfo(objectId) {
       objGallery: response.GalleryNumber,
       objUrl: response.objectURL
     };
-    return objectData;
+
+    randomObjInfo.push(objectData);
 
   });
   dataXhr.send();
