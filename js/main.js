@@ -1,6 +1,6 @@
 var $searchInput = document.getElementById('search');
 var $searchForm = document.getElementById('form');
-// var $discoveriesList = document.getElementById('discoveries-list');
+var $discoveriesList = document.getElementById('discoveries-list');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
@@ -105,7 +105,13 @@ function renderObjectInfo(object) {
 
   var $pArtist = document.createElement('p');
   $pArtist.setAttribute('class', 'artist');
-  var $pArtistText = document.createTextNode(object.objArtist);
+
+  if (object.objArtist !== '') {
+    var $pArtistText = document.createTextNode(object.objArtist);
+  } else {
+    $pArtistText = document.createTextNode('Artist Unknown');
+  }
+
   $pArtist.appendChild($pArtistText);
   $infoColumnDiv.appendChild($pArtist);
 
@@ -117,8 +123,10 @@ function renderObjectInfo(object) {
 
   var $pGallery = document.createElement('p');
   $pGallery.setAttribute('class', 'gallery');
-  var $pGalleryText = document.createTextNode(object.objGallery);
+  var $pGalleryText = document.createTextNode('Gallery ');
+  var $pGalleryNumber = document.createTextNode(object.objGallery);
   $pGallery.appendChild($pGalleryText);
+  $pGallery.appendChild($pGalleryNumber);
   $infoColumnDiv.appendChild($pGallery);
 
   var $buttonContainer = document.createElement('div');
@@ -144,5 +152,11 @@ function renderObjectInfo(object) {
 
 }
 
-// Function test:
-renderObjectInfo(randomObjInfo[0]);
+// Listen for the 'DOMContentLoaded' event and add the 4 random objects to the Discoveries list:
+function contentLoadedHandler(event) {
+  for (var randomObj of data.searchObjects) {
+    $discoveriesList.append(renderObjectInfo(randomObj));
+  }
+}
+
+window.addEventListener('DOMContentLoaded', contentLoadedHandler);
