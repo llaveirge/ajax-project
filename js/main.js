@@ -1,6 +1,9 @@
 var $searchInput = document.getElementById('search');
 var $searchForm = document.getElementById('form');
 var $discoveriesList = document.getElementById('discoveries-list');
+var $discoveriesPage = document.getElementById('discoveries');
+var $searchPage = document.getElementById('search-form');
+var $viewNodeList = document.querySelectorAll('.view');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
@@ -18,6 +21,10 @@ function searchEventHandler(event) {
   event.preventDefault();
   query = $searchInput.value;
   $searchForm.reset();
+
+  // Hide search form and show discoveries:
+  $searchPage.classList.add('hidden');
+  $discoveriesPage.classList.remove('hidden');
 
   // Function to retrieve object ID numbers from The Met API and save in objIdArr array:
   var queryXhr = new XMLHttpRequest();
@@ -158,6 +165,15 @@ function renderObjectInfo(object) {
 function contentLoadedHandler(event) {
   for (var randomObj of data.searchObjects) {
     $discoveriesList.append(renderObjectInfo(randomObj));
+  }
+
+  // Only show the appropriate page based on data.view value:
+  for (var viewNode of $viewNodeList) {
+    if (viewNode.id !== data.view) {
+      viewNode.classList.add('hidden');
+    } else {
+      viewNode.classList.remove('hidden');
+    }
   }
 }
 
