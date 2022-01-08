@@ -7,6 +7,12 @@ var data = {
   nextObjId: 1
 };
 
+var previousDataJSON = localStorage.getItem('data-local-storage');
+
+if (previousDataJSON !== null) {
+  data = JSON.parse(previousDataJSON);
+}
+
 function beforeunloadHandler(event) {
 
   var dataJSON = JSON.stringify(data);
