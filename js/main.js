@@ -74,11 +74,14 @@ function getObjectInfo(objectId) {
     randomObjInfo.push(objectData);
     data.searchObjects.push(objectData);
 
+    // Display the four random objects on the Discoveries page without reloading:
+    $discoveriesList.append(renderObjectInfo(objectData));
   });
+
   dataXhr.send();
 }
 
-// Define a functio that returns a DOM tree for each object:
+// Define a function that returns a DOM tree for each object:
 function renderObjectInfo(object) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'object display-flex wrap');
@@ -149,7 +152,6 @@ function renderObjectInfo(object) {
   $buttonContainer.appendChild($plusIcon);
 
   return $li;
-
 }
 
 // Listen for the 'DOMContentLoaded' event and add the 4 random objects to the Discoveries list:
