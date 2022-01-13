@@ -17,6 +17,10 @@ hr {
   width: 16.5rem;
 }
 
+hr.objects-hr {
+  width: 95%;
+}
+
 input {
   width: 18rem;
 }
@@ -31,7 +35,7 @@ input {
     padding: 0 0.5rem;
   }
 
-  .column-half {
+  .col-half {
     width: 50%;
   }
 
@@ -43,13 +47,39 @@ input {
     width: 31.125rem;
   }
 
+  hr.objects-hr {
+    width: 100%;
+  }
+
   input {
     width: 39rem;
   }
+
+  .obj-img-container {
+    padding-right: 1.8rem;
+    padding-left: 0;
+  }
+}
+
+ul {
+  padding: 0.5rem 0.6rem;
+}
+
+li {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.button-container {
+  padding-top: 1.75rem;
 }
 
 .display-flex {
   display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .align-items-center {

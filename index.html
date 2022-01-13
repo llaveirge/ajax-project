@@ -13,13 +13,15 @@
 </head>
 <body>
 
-  <header class="drop-shadow">
+  <header>
     <div class="container">
       <div class="row">
         <div class="col-full display-flex align-items-baseline justify-space-between">
           <h1 class="nav-header-text">
-            <i id="palette-icon" class="fas fa-palette fa-xs"></i>
-            Discover
+            <a href="#" class="view-link" id="discover-link">
+              <i id="palette-icon" class="fas fa-palette fa-xs view-link"></i>
+              Discover
+            </a>
           </h1>
           <nav>
             <i id="must-see-icon" class="fas fa-list-ul fa-lg"></i>
@@ -32,7 +34,7 @@
   <main>
     <div class="container">
 
-      <div data-view="search-form">
+      <div class="view" data-view="search-form" id="search-form">
         <div class="row">
           <div class="col-full display-flex justify-center">
             <div class="hero-img-container">
@@ -44,7 +46,7 @@
           <div class="col-full">
             <h2 class="discover-heading-text">Discover<br>
               The Metropolitan Museum of Art</h2>
-            <hr>
+            <hr class="search-hr">
           </div>
         </div>
         <div class="search-div">
@@ -69,6 +71,17 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="view hidden" data-view="discoveries" id="discoveries">
+        <div class="row">
+          <div class="col-full">
+            <h2 class="discoveries-heading-text">Discoveries</h2>
+            <hr class="objects-hr">
+          </div>
+        </div>
+        <ul id="discoveries-list">
+        </ul>
       </div>
 
     </div>
