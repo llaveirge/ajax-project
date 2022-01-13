@@ -181,7 +181,6 @@ function contentLoadedHandler(event) {
 window.addEventListener('DOMContentLoaded', contentLoadedHandler);
 
 // Listen for clicks on palette icon and 'disover' h1 heading and show search page:
-
 function handleShowDiscoverClick(event) {
 
   // Logic gate:
@@ -191,6 +190,6 @@ function handleShowDiscoverClick(event) {
 
   $searchPage.classList.remove('hidden');
   $discoveriesPage.classList.add('hidden');
-
 }
+
 $discoverLink.addEventListener('click', handleShowDiscoverClick);

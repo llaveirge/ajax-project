@@ -59,14 +59,9 @@ input {
     padding-right: 1.8rem;
     padding-left: 0;
   }
-
-  ul {
-    margin: 0;
-  }
 }
 
 ul {
-  padding-inline-start: 0;
   padding: 0.5rem 0.6rem;
 }
 

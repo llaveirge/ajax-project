@@ -139,7 +139,6 @@ li p {
 }
 
 .button {
-  border-style: none;
   background-color: #eb0029;
   color: white;
   text-decoration: none;
@@ -154,5 +153,5 @@ li p {
 
 .view-link {
   text-decoration: none;
-  color: white;
+  color: inherit;
 }
