@@ -4,6 +4,7 @@ var $discoveriesList = document.getElementById('discoveries-list');
 var $discoveriesPage = document.getElementById('discoveries');
 var $searchPage = document.getElementById('search-form');
 var $viewNodeList = document.querySelectorAll('.view');
+var $discoverLink = document.getElementById('discover-link');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
@@ -52,7 +53,7 @@ function searchEventHandler(event) {
 
 $searchForm.addEventListener('submit', searchEventHandler);
 
-/* Define a function to select and remove 4 random Met museum object IDs from the 'objIdArr' array
+/* Function to select and remove 4 random Met museum object IDs from the 'objIdArr' array
 and add them to the 'randomObjIds' array: */
 function randomize(array) {
   for (var i = 0; i < 4; i++) {
@@ -61,7 +62,7 @@ function randomize(array) {
   }
 }
 
-// Define a function to retrieve randomized object data from Met API and store in 'randomObjInfo' array and data model:
+// Function to retrieve randomized object data from Met API and store in 'randomObjInfo' array and data model:
 function getObjectInfo(objectId) {
   var dataXhr = new XMLHttpRequest();
   dataXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + objectId);
@@ -178,3 +179,18 @@ function contentLoadedHandler(event) {
 }
 
 window.addEventListener('DOMContentLoaded', contentLoadedHandler);
+
+// Listen for clicks on palette icon and 'disover' h1 heading and show search page:
+
+function handleShowDiscoverClick(event) {
+
+  // Logic gate:
+  if (!event.target.matches('.view-link')) {
+    return;
+  }
+
+  $searchPage.classList.remove('hidden');
+  $discoveriesPage.classList.add('hidden');
+
+}
+$discoverLink.addEventListener('click', handleShowDiscoverClick);
