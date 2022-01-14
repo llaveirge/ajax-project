@@ -5,6 +5,7 @@ var $discoveriesPage = document.getElementById('discoveries');
 var $searchPage = document.getElementById('search-form');
 var $viewNodeList = document.querySelectorAll('.view');
 var $discoverLink = document.getElementById('discover-link');
+var $lis = document.getElementsByTagName('li');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
@@ -39,6 +40,13 @@ function searchEventHandler(event) {
   // Start with a clean, empty 'searchObj' property in the data model if not empty already:
   if (data.searchObjects.length > 0) {
     data.searchObjects = [];
+  }
+
+  // Remove any previous created 'li' elements fron the DOM to display new results only:
+  if ($discoveriesList.childNodes.length > 1) {
+    for (var i = 0; i <= 3; i++) {
+      $discoveriesList.removeChild($lis[0]);
+    }
   }
 
   query = $searchInput.value;
