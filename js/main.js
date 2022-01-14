@@ -20,6 +20,27 @@ var query;
 
 function searchEventHandler(event) {
   event.preventDefault();
+
+  // Start with a clean, empty 'objIdArr' if not empty already:
+  if (objIdArr.length > 0) {
+    objIdArr = [];
+  }
+
+  // Start with a clean, empty 'randomObjIds' if not empty already:
+  if (randomObjIds.length > 0) {
+    randomObjIds = [];
+  }
+
+  // Start with a clean, empty 'randomObjInfo' if not empty already:
+  if (randomObjInfo.length > 0) {
+    randomObjInfo = [];
+  }
+
+  // Start with a clean, empty 'searchObj' property in the data model if not empty already:
+  if (data.searchObjects.length > 0) {
+    data.searchObjects = [];
+  }
+
   query = $searchInput.value;
   $searchForm.reset();
 
