@@ -246,10 +246,10 @@ function addToMustSee(event) {
     for (var randomObject of randomObjInfo) {
       if (randomObject.objMetId === clickedObjId) {
         randomObject.nextObjId = data.nextObjId;
+        data.saved.unshift(randomObject);
       }
     }
   }
-
   data.nextObjId++;
 }
 
