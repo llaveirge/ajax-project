@@ -105,7 +105,8 @@ function getObjectInfo(objectId) {
       objArtist: response.artistDisplayName,
       objMedium: response.medium,
       objGallery: response.GalleryNumber,
-      objUrl: response.objectURL
+      objUrl: response.objectURL,
+      objMetId: response.objectID
     };
 
     randomObjInfo.push(objectData);
@@ -121,7 +122,8 @@ function getObjectInfo(objectId) {
 // Define a function that returns a DOM tree for each object:
 function renderObjectInfo(object) {
   var $li = document.createElement('li');
-  $li.setAttribute('class', 'object display-flex wrap');
+  $li.setAttribute('class', 'object display-flex wrap discovery-item');
+  $li.setAttribute('id', object.objMetId);
 
   var $divObjImgCont = document.createElement('div');
   $divObjImgCont.setAttribute('class', 'obj-img-container col-full col-half');
@@ -231,6 +233,21 @@ function addToMustSee(event) {
 
   if (event.target.matches('.fa-plus')) {
     event.target.classList.replace('fa-plus', 'fa-check');
+
+    // console.log('closest li:', event.target.closest('li'));
+    var clickedLi = event.target.closest('li');
+    // console.log(clickedLi.id);
+    // console.log(typeof clickedLi.id);
+
+    var clickedObjId = +clickedLi.id;
+    // console.log(typeof clickedObjId);
+
+    // Assign 'nextObjId' to the clicked object's object literal in the randomObjId array:
+    for (var randomObject of randomObjInfo) {
+      if (randomObject.objMetId === clickedObjId) {
+        randomObject.nextObjId = data.nextObjId;
+      }
+    }
   }
 }
 
