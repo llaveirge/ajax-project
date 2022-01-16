@@ -249,6 +249,8 @@ function addToMustSee(event) {
       }
     }
   }
+
+  data.nextObjId++;
 }
 
 $discoveriesList.addEventListener('click', addToMustSee);
