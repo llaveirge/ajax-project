@@ -222,3 +222,16 @@ function handleShowDiscoverClick(event) {
 }
 
 $discoverLink.addEventListener('click', handleShowDiscoverClick);
+
+// Listen for clicks on discoveries ul and change the plus icon to a checkmark icon:
+function addToMustSee(event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+
+  if (event.target.matches('.fa-plus')) {
+    event.target.classList.replace('fa-plus', 'fa-check');
+  }
+}
+
+$discoveriesList.addEventListener('click', addToMustSee);
