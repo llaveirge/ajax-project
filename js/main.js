@@ -6,15 +6,13 @@ var $searchPage = document.getElementById('search-form');
 var $viewNodeList = document.querySelectorAll('.view');
 var $discoverLink = document.getElementById('discover-link');
 var $lis = document.getElementsByTagName('li');
+var $mustSeePage = document.getElementById('must-see');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
 
-// Empty aray to store four random object IDs from the 'objIdArr' array:
+// Empty array to store four random object IDs from the 'objIdArr' array:
 var randomObjIds = [];
-
-// Empty array to store the four random museum objects and their information:
-var randomObjInfo = [];
 
 // Listen for events and save search value to a variable before resetting the form:
 var query;
@@ -23,24 +21,13 @@ function searchEventHandler(event) {
   event.preventDefault();
 
   // Start with a clean, empty 'objIdArr' if not empty already:
-  if (objIdArr.length > 0) {
-    objIdArr = [];
-  }
+  objIdArr = [];
 
   // Start with a clean, empty 'randomObjIds' if not empty already:
-  if (randomObjIds.length > 0) {
-    randomObjIds = [];
-  }
-
-  // Start with a clean, empty 'randomObjInfo' if not empty already:
-  if (randomObjInfo.length > 0) {
-    randomObjInfo = [];
-  }
+  randomObjIds = [];
 
   // Start with a clean, empty 'searchObj' property in the data model if not empty already:
-  if (data.searchObjects.length > 0) {
-    data.searchObjects = [];
-  }
+  data.searchObjects = [];
 
   // Remove any previous created 'li' elements fron the DOM to display new results only:
   if ($discoveriesList.childNodes.length > 1) {
@@ -58,7 +45,7 @@ function searchEventHandler(event) {
 
   // Function to retrieve object ID numbers from The Met API and save in objIdArr array:
   var queryXhr = new XMLHttpRequest();
-  queryXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/search?' + 'q=' + query + '&isOnView=true');
+  queryXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/search?isOnView=true&q=' + query);
   queryXhr.responseType = 'json';
   queryXhr.addEventListener('load', function () {
     var responseObjectIds = queryXhr.response.objectIDs;
@@ -91,7 +78,7 @@ function randomize(array) {
   }
 }
 
-// Function to retrieve randomized object data from Met API and store in 'randomObjInfo' array and data model:
+// Function to retrieve randomized object data from Met API and store in 'searchObjects' property of data model:
 function getObjectInfo(objectId) {
   var dataXhr = new XMLHttpRequest();
   dataXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + objectId);
@@ -109,7 +96,6 @@ function getObjectInfo(objectId) {
       objMetId: response.objectID
     };
 
-    randomObjInfo.push(objectData);
     data.searchObjects.push(objectData);
 
     // Display the four random objects on the Discoveries page without reloading:
@@ -221,6 +207,7 @@ function handleShowDiscoverClick(event) {
 
   $searchPage.classList.remove('hidden');
   $discoveriesPage.classList.add('hidden');
+  $mustSeePage.classList.add('hidden');
 }
 
 $discoverLink.addEventListener('click', handleShowDiscoverClick);
@@ -236,14 +223,10 @@ function addToMustSee(event) {
 
     // console.log('closest li:', event.target.closest('li'));
     var clickedLi = event.target.closest('li');
-    // console.log(clickedLi.id);
-    // console.log(typeof clickedLi.id);
-
     var clickedObjId = +clickedLi.id;
-    // console.log(typeof clickedObjId);
 
     // Assign 'nextObjId' to the clicked object's object literal in the randomObjId array:
-    for (var randomObject of randomObjInfo) {
+    for (var randomObject of data.searchObjects) {
       if (randomObject.objMetId === clickedObjId) {
         randomObject.nextObjId = data.nextObjId;
         data.saved.unshift(randomObject);
