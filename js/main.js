@@ -173,7 +173,13 @@ function renderObjectInfo(object) {
   $buttonContainer.appendChild($learnMoreAnchor);
 
   var $plusIcon = document.createElement('i');
-  $plusIcon.setAttribute('class', 'add fas fa-plus fa-lg');
+
+  // If saved, show checkmark instead of plus icon:
+  if (object.saved === true) {
+    $plusIcon.setAttribute('class', 'add fas fa-check fa-lg');
+  } else {
+    $plusIcon.setAttribute('class', 'add fas fa-plus fa-lg');
+  }
   $buttonContainer.appendChild($plusIcon);
 
   return $li;
@@ -230,6 +236,7 @@ function addToMustSee(event) {
       if (randomObject.objMetId === clickedObjId) {
         randomObject.nextObjId = data.nextObjId;
         data.saved.unshift(randomObject);
+        randomObject.saved = true;
       }
     }
   }
