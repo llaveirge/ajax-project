@@ -133,7 +133,6 @@ function renderObjectInfo(object) {
 
   var $pArtist = document.createElement('p');
   $pArtist.setAttribute('class', 'artist');
-
   if (object.objArtist !== '') {
     var $pArtistText = document.createTextNode(object.objArtist);
   } else {
@@ -173,10 +172,9 @@ function renderObjectInfo(object) {
   $buttonContainer.appendChild($learnMoreAnchor);
 
   var $plusIcon = document.createElement('i');
-
   // If saved, show checkmark instead of plus icon:
   if (object.saved === true) {
-    $plusIcon.setAttribute('class', 'add fas fa-check fa-lg');
+    $plusIcon.setAttribute('class', 'saved fas fa-check fa-lg');
   } else {
     $plusIcon.setAttribute('class', 'add fas fa-plus fa-lg');
   }

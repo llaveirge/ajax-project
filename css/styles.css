@@ -97,8 +97,19 @@ i.fa-plus {
   font-size: 1.55rem;
 }
 
+i.fa-plus:hover {
+  color: #1b3767;
+}
+
 i.fa-paint-brush {
-  padding-left: 0.2rem;
+  padding-left: 0.1rem;
+  padding-right: 0.4rem;
+  font-size: 1.25rem;
+}
+
+i.fa-check {
+  color: #1b3767;
+  font-size: 1.565rem;
 }
 
 @media screen and (min-width: 750px) {
