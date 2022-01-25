@@ -229,7 +229,6 @@ function addToMustSee(event) {
   if (event.target.matches('.fa-plus')) {
     event.target.classList.replace('fa-plus', 'fa-check');
 
-    // console.log('closest li:', event.target.closest('li'));
     var clickedLi = event.target.closest('li');
     var clickedObjId = +clickedLi.id;
 
