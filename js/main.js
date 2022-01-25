@@ -171,6 +171,9 @@ function renderObjectInfo(object) {
   $learnMoreAnchor.appendChild($learnMoreText);
   $buttonContainer.appendChild($learnMoreAnchor);
 
+  var $plusIconAnchor = document.createElement('a');
+  $plusIconAnchor.setAttribute('class', 'plus-check');
+  $plusIconAnchor.setAttribute('href', '#!');
   var $plusIcon = document.createElement('i');
   // If saved, show checkmark instead of plus icon:
   if (object.saved === true) {
@@ -178,7 +181,8 @@ function renderObjectInfo(object) {
   } else {
     $plusIcon.setAttribute('class', 'add fas fa-plus fa-lg');
   }
-  $buttonContainer.appendChild($plusIcon);
+  $plusIconAnchor.appendChild($plusIcon);
+  $buttonContainer.appendChild($plusIconAnchor);
 
   return $li;
 }

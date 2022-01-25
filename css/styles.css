@@ -77,6 +77,12 @@ input:focus {
   border-color: #eb0029;
 }
 
+a.plus-check {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 i {
   color: white;
   padding: 0 0.5rem;
@@ -156,6 +162,7 @@ li p {
   padding: 0.35rem;
   padding-right: 0.8rem;
   border-radius: 2px;
+  height: 31.19px;
 }
 
 .button:hover {
