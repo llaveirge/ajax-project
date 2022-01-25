@@ -5,21 +5,37 @@ var $discoveriesPage = document.getElementById('discoveries');
 var $searchPage = document.getElementById('search-form');
 var $viewNodeList = document.querySelectorAll('.view');
 var $discoverLink = document.getElementById('discover-link');
+var $lis = document.getElementsByTagName('li');
+var $mustSeePage = document.getElementById('must-see');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
 
-// Empty aray to store four random object IDs from the 'objIdArr' array:
+// Empty array to store four random object IDs from the 'objIdArr' array:
 var randomObjIds = [];
-
-// Empty array to store the four random museum objects and their information:
-var randomObjInfo = [];
 
 // Listen for events and save search value to a variable before resetting the form:
 var query;
 
 function searchEventHandler(event) {
   event.preventDefault();
+
+  // Start with a clean, empty 'objIdArr' if not empty already:
+  objIdArr = [];
+
+  // Start with a clean, empty 'randomObjIds' if not empty already:
+  randomObjIds = [];
+
+  // Start with a clean, empty 'searchObj' property in the data model if not empty already:
+  data.searchObjects = [];
+
+  // Remove any previous created 'li' elements fron the DOM to display new results only:
+  if ($discoveriesList.childNodes.length > 1) {
+    for (var i = 0; i <= 3; i++) {
+      $discoveriesList.removeChild($lis[0]);
+    }
+  }
+
   query = $searchInput.value;
   $searchForm.reset();
 
@@ -29,7 +45,7 @@ function searchEventHandler(event) {
 
   // Function to retrieve object ID numbers from The Met API and save in objIdArr array:
   var queryXhr = new XMLHttpRequest();
-  queryXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/search?' + 'q=' + query + '&isOnView=true');
+  queryXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/search?isOnView=true&q=' + query);
   queryXhr.responseType = 'json';
   queryXhr.addEventListener('load', function () {
     var responseObjectIds = queryXhr.response.objectIDs;
@@ -62,7 +78,7 @@ function randomize(array) {
   }
 }
 
-// Function to retrieve randomized object data from Met API and store in 'randomObjInfo' array and data model:
+// Function to retrieve randomized object data from Met API and store in 'searchObjects' property of data model:
 function getObjectInfo(objectId) {
   var dataXhr = new XMLHttpRequest();
   dataXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + objectId);
@@ -76,10 +92,10 @@ function getObjectInfo(objectId) {
       objArtist: response.artistDisplayName,
       objMedium: response.medium,
       objGallery: response.GalleryNumber,
-      objUrl: response.objectURL
+      objUrl: response.objectURL,
+      objMetId: response.objectID
     };
 
-    randomObjInfo.push(objectData);
     data.searchObjects.push(objectData);
 
     // Display the four random objects on the Discoveries page without reloading:
@@ -92,7 +108,8 @@ function getObjectInfo(objectId) {
 // Define a function that returns a DOM tree for each object:
 function renderObjectInfo(object) {
   var $li = document.createElement('li');
-  $li.setAttribute('class', 'object display-flex wrap');
+  $li.setAttribute('class', 'object display-flex wrap discovery-item');
+  $li.setAttribute('id', object.objMetId);
 
   var $divObjImgCont = document.createElement('div');
   $divObjImgCont.setAttribute('class', 'obj-img-container col-full col-half');
@@ -116,7 +133,6 @@ function renderObjectInfo(object) {
 
   var $pArtist = document.createElement('p');
   $pArtist.setAttribute('class', 'artist');
-
   if (object.objArtist !== '') {
     var $pArtistText = document.createTextNode(object.objArtist);
   } else {
@@ -155,9 +171,18 @@ function renderObjectInfo(object) {
   $learnMoreAnchor.appendChild($learnMoreText);
   $buttonContainer.appendChild($learnMoreAnchor);
 
+  var $plusIconAnchor = document.createElement('a');
+  $plusIconAnchor.setAttribute('class', 'plus-check');
+  $plusIconAnchor.setAttribute('href', '#!');
   var $plusIcon = document.createElement('i');
-  $plusIcon.setAttribute('class', 'add fas fa-plus fa-lg');
-  $buttonContainer.appendChild($plusIcon);
+  // If saved, show checkmark instead of plus icon:
+  if (object.saved === true) {
+    $plusIcon.setAttribute('class', 'saved fas fa-check fa-lg');
+  } else {
+    $plusIcon.setAttribute('class', 'add fas fa-plus fa-lg');
+  }
+  $plusIconAnchor.appendChild($plusIcon);
+  $buttonContainer.appendChild($plusIconAnchor);
 
   return $li;
 }
@@ -190,6 +215,33 @@ function handleShowDiscoverClick(event) {
 
   $searchPage.classList.remove('hidden');
   $discoveriesPage.classList.add('hidden');
+  $mustSeePage.classList.add('hidden');
 }
 
 $discoverLink.addEventListener('click', handleShowDiscoverClick);
+
+// Listen for clicks on discoveries ul and change the plus icon to a checkmark icon:
+function addToMustSee(event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+
+  if (event.target.matches('.fa-plus')) {
+    event.target.classList.replace('fa-plus', 'fa-check');
+
+    var clickedLi = event.target.closest('li');
+    var clickedObjId = +clickedLi.id;
+
+    // Assign 'nextObjId' to the clicked object's object literal in the randomObjId array:
+    for (var randomObject of data.searchObjects) {
+      if (randomObject.objMetId === clickedObjId) {
+        randomObject.nextObjId = data.nextObjId;
+        data.saved.unshift(randomObject);
+        randomObject.saved = true;
+      }
+    }
+  }
+  data.nextObjId++;
+}
+
+$discoveriesList.addEventListener('click', addToMustSee);
