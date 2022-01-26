@@ -118,6 +118,16 @@ i.fa-check {
   font-size: 1.565rem;
 }
 
+.fa-eye-slash,
+.fa-trash {
+  color: #b6b6b6;
+}
+
+.fa-eye-slash {
+  position: relative;
+  right: 25px;
+}
+
 @media screen and (min-width: 750px) {
   h2.discoveries-heading-text {
     padding-left: 0;
