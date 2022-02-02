@@ -7,6 +7,7 @@ var $viewNodeList = document.querySelectorAll('.view');
 var $discoverLink = document.getElementById('discover-link');
 var $lis = document.getElementsByTagName('li');
 var $mustSeePage = document.getElementById('must-see');
+var $mustSeeList = document.getElementById('must-see-list');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
@@ -193,6 +194,11 @@ function contentLoadedHandler(event) {
     $discoveriesList.append(renderObjectInfo(randomObj));
   }
 
+  // Add saved Items to the must-see list:
+  for (var savedObj of data.saved) {
+    $mustSeeList.append(renderSavedObjectInfo(savedObj));
+  }
+
   // Only show the appropriate page based on data.view value:
   for (var viewNode of $viewNodeList) {
     if (viewNode.id !== data.view) {
@@ -239,9 +245,97 @@ function addToMustSee(event) {
         data.saved.unshift(randomObject);
         randomObject.saved = true;
       }
-    }
+    } // will need to add render saved obj fn somewhere around here to add without loading.
   }
   data.nextObjId++;
 }
 
 $discoveriesList.addEventListener('click', addToMustSee);
+
+// Define a function that returns a DOM tree for each saved object:
+function renderSavedObjectInfo(object) {
+  var $li = document.createElement('li');
+  $li.setAttribute('class', 'object display-flex wrap');
+  $li.setAttribute('id', object.objMetId);
+  /// MAY NEED TO CHANGE/REMOVE ^^
+
+  var $divObjImgCont = document.createElement('div');
+  $divObjImgCont.setAttribute('class', 'obj-img-container col-full col-half');
+  $li.appendChild($divObjImgCont);
+
+  var $objImg = document.createElement('img');
+  $objImg.setAttribute('class', 'obj-img');
+  $objImg.setAttribute('src', object.objImgUrl);
+  $objImg.setAttribute('alt', object.objTitle);
+  $divObjImgCont.appendChild($objImg);
+
+  var $infoColumnDiv = document.createElement('div');
+  $infoColumnDiv.setAttribute('class', 'col-full col-half');
+  $li.appendChild($infoColumnDiv);
+
+  var $h3Title = document.createElement('h3');
+  $h3Title.setAttribute('class', 'title');
+  var $h3TitleText = document.createTextNode(object.objTitle);
+  $h3Title.appendChild($h3TitleText);
+  $infoColumnDiv.appendChild($h3Title);
+
+  var $pArtist = document.createElement('p');
+  $pArtist.setAttribute('class', 'artist');
+  if (object.objArtist !== '') {
+    var $pArtistText = document.createTextNode(object.objArtist);
+  } else {
+    $pArtistText = document.createTextNode('Artist Unknown');
+  }
+
+  $pArtist.appendChild($pArtistText);
+  $infoColumnDiv.appendChild($pArtist);
+
+  var $pMedium = document.createElement('p');
+  $pMedium.setAttribute('class', 'medium');
+  var $pMediumText = document.createTextNode(object.objMedium);
+  $pMedium.appendChild($pMediumText);
+  $infoColumnDiv.appendChild($pMedium);
+
+  var $pGallery = document.createElement('p');
+  $pGallery.setAttribute('class', 'gallery');
+  var $pGalleryText = document.createTextNode('Gallery ');
+  var $pGalleryNumber = document.createTextNode(object.objGallery);
+  $pGallery.appendChild($pGalleryText);
+  $pGallery.appendChild($pGalleryNumber);
+  $infoColumnDiv.appendChild($pGallery);
+
+  var $buttonContainer = document.createElement('div');
+  $buttonContainer.setAttribute('class', 'button-container must-see-buttons display-flex justify-space-between');
+  $infoColumnDiv.appendChild($buttonContainer);
+
+  var $learnMoreAnchor = document.createElement('a');
+  $learnMoreAnchor.setAttribute('class', 'button');
+  $learnMoreAnchor.setAttribute('href', object.objUrl);
+  $learnMoreAnchor.setAttribute('target', '_blank');
+  var $paintIcon = document.createElement('i');
+  $paintIcon.setAttribute('class', 'fas fa-paint-brush');
+  $learnMoreAnchor.appendChild($paintIcon);
+  var $learnMoreText = document.createTextNode('LEARN MORE');
+  $learnMoreAnchor.appendChild($learnMoreText);
+  $buttonContainer.appendChild($learnMoreAnchor);
+
+  // Above (except for id) is same as previous render function
+  var $savedIconDiv = document.createElement('div');
+  $savedIconDiv.setAttribute('class', 'align-items-baseline');
+  $buttonContainer.appendChild($savedIconDiv);
+
+  var $eyeIcon = document.createElement('i');
+  // If seen, show filled eye icon instead of eye prohibition icon:
+  if (object.seen === true) {
+    $eyeIcon.setAttribute('class', 'fas fa-eye fa-lg');
+  } else {
+    $eyeIcon.setAttribute('class', 'fas fa-eye-slash fa-lg');
+  }
+  $savedIconDiv.appendChild($eyeIcon);
+
+  var $deleteIcon = document.createElement('i');
+  $deleteIcon.setAttribute('class', 'delete fas fa-trash fa-lg');
+  $savedIconDiv.appendChild($deleteIcon);
+
+  return $li;
+}
