@@ -244,8 +244,10 @@ function addToMustSee(event) {
         randomObject.nextObjId = data.nextObjId;
         data.saved.unshift(randomObject);
         randomObject.saved = true;
+        // render saved obj to must-see-list without loading:
+        $mustSeeList.prepend(renderSavedObjectInfo(randomObject));
       }
-    } // will need to add render saved obj fn somewhere around here to add without loading.
+    }
   }
   data.nextObjId++;
 }
