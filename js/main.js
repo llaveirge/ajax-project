@@ -256,8 +256,7 @@ $discoveriesList.addEventListener('click', addToMustSee);
 function renderSavedObjectInfo(object) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'object display-flex wrap');
-  $li.setAttribute('id', object.objMetId);
-  /// MAY NEED TO CHANGE/REMOVE ^^
+  $li.setAttribute('id', object.nextObjId);
 
   var $divObjImgCont = document.createElement('div');
   $divObjImgCont.setAttribute('class', 'obj-img-container col-full col-half');
