@@ -30,7 +30,7 @@ function searchEventHandler(event) {
   // Start with a clean, empty 'searchObj' property in the data model if not empty already:
   data.searchObjects = [];
 
-  // Remove any previous created 'li' elements fron the DOM to display new results only:
+  // Remove any previous created 'li' elements from the DOM to display new results only:
   if ($discoveriesList.childNodes.length > 1) {
     for (var i = 0; i <= 3; i++) {
       $discoveriesList.removeChild($lis[0]);
