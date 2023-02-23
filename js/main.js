@@ -51,7 +51,7 @@ function searchEventHandler(event) {
   queryXhr.addEventListener('load', function () {
     var responseObjectIds = queryXhr.response.objectIDs;
 
-    // Add response IDs to objIdArr array:
+    // Add response IDs to objIdArr array - *Test capturing only random Ids in API call*:
     for (var id of responseObjectIds) {
       objIdArr.push(id);
     }
@@ -75,7 +75,7 @@ and add them to the 'randomObjIds' array: */
 function randomize(array) {
   for (var i = 0; i < 4; i++) {
     var randomIndex = Math.floor(Math.random() * array.length);
-    randomObjIds.push(objIdArr.splice(randomIndex, 1));
+    randomObjIds.push(`${objIdArr.splice(randomIndex, 1)}`);
   }
 }
 
@@ -116,6 +116,7 @@ function renderObjectInfo(object) {
   $divObjImgCont.setAttribute('class', 'obj-img-container col-full col-half');
   $li.appendChild($divObjImgCont);
 
+  // *Add a default image for those that don't have an image or permission to share image*
   var $objImg = document.createElement('img');
   $objImg.setAttribute('class', 'obj-img');
   $objImg.setAttribute('src', object.objImgUrl);
@@ -158,7 +159,9 @@ function renderObjectInfo(object) {
   $infoColumnDiv.appendChild($pGallery);
 
   var $buttonContainer = document.createElement('div');
-  $buttonContainer.setAttribute('class', 'button-container display-flex justify-space-between');
+  $buttonContainer.setAttribute(
+    'class', 'button-container display-flex justify-space-between'
+  );
   $infoColumnDiv.appendChild($buttonContainer);
 
   var $learnMoreAnchor = document.createElement('a');
@@ -211,7 +214,7 @@ function contentLoadedHandler(event) {
 
 window.addEventListener('DOMContentLoaded', contentLoadedHandler);
 
-// Listen for clicks on palette icon and 'disover' h1 heading and show search page:
+// Listen for clicks on palette icon and 'discover' h1 heading and show search page:
 function handleShowDiscoverClick(event) {
 
   // Logic gate:
