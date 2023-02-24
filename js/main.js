@@ -247,6 +247,7 @@ function addToMustSee(event) {
         randomObject.nextObjId = data.nextObjId;
         data.saved.unshift(randomObject);
         randomObject.saved = true;
+        randomObject.seen = false;
         // render saved obj to must-see-list without loading:
         $mustSeeList.prepend(renderSavedObjectInfo(randomObject));
       }
@@ -331,7 +332,7 @@ function renderSavedObjectInfo(object) {
   var $eyeIcon = document.createElement('i');
   // If seen, show filled eye icon instead of eye prohibition icon *make ternary:
   if (object.seen) {
-    $eyeIcon.setAttribute('class', 'fas fa-eye fa-lg');
+    $eyeIcon.setAttribute('class', 'fas fa-eye fa-lg met-blue');
   } else {
     $eyeIcon.setAttribute('class', 'fas fa-eye-slash fa-lg');
   }
@@ -343,3 +344,28 @@ function renderSavedObjectInfo(object) {
 
   return $li;
 }
+
+function toggleSeen(event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+
+  if (event.target.matches('.fa-eye-slash')) {
+    event.target.classList.replace('fa-eye-slash', 'fa-eye');
+    event.target.classList.add('met-blue');
+  } else {
+    event.target.classList.remove('met-blue');
+    event.target.classList.replace('fa-eye', 'fa-eye-slash');
+  }
+
+  var clickedLi = event.target.closest('li');
+  var clickedObjId = +clickedLi.id;
+
+  for (const savedObject of data.saved) {
+    if (savedObject.nextObjId === clickedObjId) {
+      savedObject.seen = !savedObject.seen;
+    }
+  }
+}
+
+$mustSeeList.addEventListener('click', toggleSeen);

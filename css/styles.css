@@ -123,9 +123,14 @@ i.fa-check {
   color: #b6b6b6;
 }
 
-.fa-eye-slash {
+.fa-eye-slash,
+.fa-eye {
   position: relative;
   right: 25px;
+}
+
+.met-blue {
+  color: #1b3767;
 }
 
 @media screen and (min-width: 750px) {
