@@ -241,7 +241,7 @@ function addToMustSee(event) {
     var clickedLi = event.target.closest('li');
     var clickedObjId = +clickedLi.id;
 
-    // Assign 'nextObjId' to the clicked object's object literal in the randomObjId array:
+    // Assign 'nextObjId' to the clicked object's object literal in the randomObjId array *reconsider the name 'nextObjId'*:
     for (var randomObject of data.searchObjects) {
       if (randomObject.objMetId === clickedObjId) {
         randomObject.nextObjId = data.nextObjId;
@@ -323,14 +323,14 @@ function renderSavedObjectInfo(object) {
   $learnMoreAnchor.appendChild($learnMoreText);
   $buttonContainer.appendChild($learnMoreAnchor);
 
-  // Above (except for id) is same as previous render function
+  // Above (except for id) is same as previous render function *remove redundant code and make a single function*
   var $savedIconDiv = document.createElement('div');
   $savedIconDiv.setAttribute('class', 'align-items-baseline');
   $buttonContainer.appendChild($savedIconDiv);
 
   var $eyeIcon = document.createElement('i');
-  // If seen, show filled eye icon instead of eye prohibition icon:
-  if (object.seen === true) {
+  // If seen, show filled eye icon instead of eye prohibition icon *make ternary:
+  if (object.seen) {
     $eyeIcon.setAttribute('class', 'fas fa-eye fa-lg');
   } else {
     $eyeIcon.setAttribute('class', 'fas fa-eye-slash fa-lg');
