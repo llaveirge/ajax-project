@@ -329,6 +329,12 @@ function renderSavedObjectInfo(object) {
   $savedIconDiv.setAttribute('class', 'align-items-baseline');
   $buttonContainer.appendChild($savedIconDiv);
 
+  var $seenButton = document.createElement('button');
+  $seenButton.setAttribute('class', 'seen-button');
+  $seenButton.setAttribute('type', 'button');
+  $seenButton.setAttribute('aria-pressed', object.seen);
+  $savedIconDiv.appendChild($seenButton);
+
   var $eyeIcon = document.createElement('i');
   // If seen, show filled eye icon instead of eye prohibition icon *make ternary:
   if (object.seen) {
@@ -336,7 +342,7 @@ function renderSavedObjectInfo(object) {
   } else {
     $eyeIcon.setAttribute('class', 'fas fa-eye-slash fa-lg');
   }
-  $savedIconDiv.appendChild($eyeIcon);
+  $seenButton.appendChild($eyeIcon);
 
   var $deleteIcon = document.createElement('i');
   $deleteIcon.setAttribute('class', 'delete fas fa-trash fa-lg');
@@ -350,12 +356,17 @@ function toggleSeen(event) {
     return;
   }
 
+  var seenButton = event.target.closest('button');
+  // var seenIcon = event.target.closest('i');
+
   if (event.target.matches('.fa-eye-slash')) {
     event.target.classList.replace('fa-eye-slash', 'fa-eye');
     event.target.classList.add('met-blue');
+    seenButton.setAttribute('aria-pressed', true);
   } else {
     event.target.classList.remove('met-blue');
     event.target.classList.replace('fa-eye', 'fa-eye-slash');
+    seenButton.setAttribute('aria-pressed', false);
   }
 
   var clickedLi = event.target.closest('li');

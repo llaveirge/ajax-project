@@ -123,8 +123,13 @@ i.fa-check {
   color: #b6b6b6;
 }
 
-.fa-eye-slash,
+/* .fa-eye-slash,
 .fa-eye {
+  position: relative;
+  right: 25px;
+} */
+
+.seen-button {
   position: relative;
   right: 25px;
 }
