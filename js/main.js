@@ -326,11 +326,11 @@ function renderSavedObjectInfo(object) {
 
   // Above (except for id) is same as previous render function *remove redundant code and make a single function*
   var $savedIconDiv = document.createElement('div');
-  $savedIconDiv.setAttribute('class', 'align-items-baseline');
+  $savedIconDiv.setAttribute('class', 'display-flex align-items-center gap-15');
   $buttonContainer.appendChild($savedIconDiv);
 
   var $seenButton = document.createElement('button');
-  $seenButton.setAttribute('class', 'seen-button');
+  $seenButton.setAttribute('class', 'toggle-seen-button seen-button');
   $seenButton.setAttribute('type', 'button');
   $seenButton.setAttribute('aria-pressed', object.seen);
   $savedIconDiv.appendChild($seenButton);
@@ -338,9 +338,9 @@ function renderSavedObjectInfo(object) {
   var $eyeIcon = document.createElement('i');
   // If seen, show filled eye icon instead of eye prohibition icon *make ternary:
   if (object.seen) {
-    $eyeIcon.setAttribute('class', 'fas fa-eye fa-lg met-blue');
+    $eyeIcon.setAttribute('class', 'eye-icon seen-button fas fa-eye fa-lg met-blue');
   } else {
-    $eyeIcon.setAttribute('class', 'fas fa-eye-slash fa-lg');
+    $eyeIcon.setAttribute('class', 'eye-icon seen-button fas fa-eye-slash fa-lg');
   }
   $seenButton.appendChild($eyeIcon);
 
@@ -352,25 +352,25 @@ function renderSavedObjectInfo(object) {
 }
 
 function toggleSeen(event) {
-  if (event.target.tagName !== 'I') {
+  if (!event.target.classList.contains('seen-button')) {
     return;
   }
 
-  var seenButton = event.target.closest('button');
-  // var seenIcon = event.target.closest('i');
+  const seenButton = event.target.closest('button');
+  const seenIcon = seenButton.firstElementChild;
 
-  if (event.target.matches('.fa-eye-slash')) {
-    event.target.classList.replace('fa-eye-slash', 'fa-eye');
-    event.target.classList.add('met-blue');
+  if (seenIcon.matches('.fa-eye-slash')) {
+    seenIcon.classList.replace('fa-eye-slash', 'fa-eye');
+    seenIcon.classList.add('met-blue');
     seenButton.setAttribute('aria-pressed', true);
   } else {
-    event.target.classList.remove('met-blue');
-    event.target.classList.replace('fa-eye', 'fa-eye-slash');
+    seenIcon.classList.remove('met-blue');
+    seenIcon.classList.replace('fa-eye', 'fa-eye-slash');
     seenButton.setAttribute('aria-pressed', false);
   }
 
-  var clickedLi = event.target.closest('li');
-  var clickedObjId = +clickedLi.id;
+  const clickedLi = event.target.closest('li');
+  const clickedObjId = +clickedLi.id;
 
   for (const savedObject of data.saved) {
     if (savedObject.nextObjId === clickedObjId) {

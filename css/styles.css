@@ -129,9 +129,22 @@ i.fa-check {
   right: 25px;
 } */
 
-.seen-button {
-  position: relative;
-  right: 25px;
+.align-items-center {
+  align-items: center;
+}
+
+.gap-15 {
+  gap: 15px;
+}
+
+.toggle-seen-button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.toggle-seen-button:hover {
+  cursor: pointer;
 }
 
 .met-blue {
