@@ -137,13 +137,13 @@ i.fa-check {
   gap: 15px;
 }
 
-.toggle-seen-button {
+.icon-button {
   padding: 0;
   border: none;
   background-color: transparent;
 }
 
-.toggle-seen-button:hover {
+.icon-button:hover {
   cursor: pointer;
 }
 

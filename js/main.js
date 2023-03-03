@@ -175,18 +175,21 @@ function renderObjectInfo(object) {
   $learnMoreAnchor.appendChild($learnMoreText);
   $buttonContainer.appendChild($learnMoreAnchor);
 
-  var $plusIconAnchor = document.createElement('a');
-  $plusIconAnchor.setAttribute('class', 'plus-check');
-  $plusIconAnchor.setAttribute('href', '#!');
+  var $plusIconButton = document.createElement('button');
+  $plusIconButton.setAttribute('class', 'must-see-button icon-button plus-check');
+  $plusIconButton.setAttribute('type', 'button');
+  // add aria-pressed attribute
+
   var $plusIcon = document.createElement('i');
   // If saved, show checkmark instead of plus icon:
   if (object.saved === true) {
-    $plusIcon.setAttribute('class', 'saved fas fa-check fa-lg');
+    $plusIcon.setAttribute('class', 'must-see-button saved fas fa-check fa-lg');
   } else {
-    $plusIcon.setAttribute('class', 'add fas fa-plus fa-lg');
+    $plusIcon.setAttribute('class', 'must-see-button add fas fa-plus fa-lg');
   }
-  $plusIconAnchor.appendChild($plusIcon);
-  $buttonContainer.appendChild($plusIconAnchor);
+
+  $plusIconButton.appendChild($plusIcon);
+  $buttonContainer.appendChild($plusIconButton);
 
   return $li;
 }
@@ -231,12 +234,15 @@ $discoverLink.addEventListener('click', handleShowDiscoverClick);
 
 // Listen for clicks on discoveries ul and change the plus icon to a checkmark icon:
 function addToMustSee(event) {
-  if (event.target.tagName !== 'I') {
+  if (!event.target.classList.contains('must-see-button')) {
     return;
   }
 
-  if (event.target.matches('.fa-plus')) {
-    event.target.classList.replace('fa-plus', 'fa-check');
+  const saveButton = event.target.closest('button');
+  const saveIcon = saveButton.firstElementChild;
+
+  if (saveIcon.matches('.fa-plus')) {
+    saveIcon.classList.replace('fa-plus', 'fa-check');
 
     var clickedLi = event.target.closest('li');
     var clickedObjId = +clickedLi.id;
@@ -330,7 +336,7 @@ function renderSavedObjectInfo(object) {
   $buttonContainer.appendChild($savedIconDiv);
 
   var $seenButton = document.createElement('button');
-  $seenButton.setAttribute('class', 'toggle-seen-button seen-button');
+  $seenButton.setAttribute('class', 'icon-button seen-button');
   $seenButton.setAttribute('type', 'button');
   $seenButton.setAttribute('aria-pressed', object.seen);
   $savedIconDiv.appendChild($seenButton);
@@ -351,6 +357,7 @@ function renderSavedObjectInfo(object) {
   return $li;
 }
 
+// consider replacing contains to matches?
 function toggleSeen(event) {
   if (!event.target.classList.contains('seen-button')) {
     return;
