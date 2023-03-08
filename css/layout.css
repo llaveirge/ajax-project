@@ -10,20 +10,105 @@
   width: 100%;
 }
 
+.hero-img-container {
+  width: 347px;
+  padding-bottom: 2rem;
+}
+
+.hero-img {
+  width: 100%;
+}
+
 .p-container {
   max-width: 26rem;
 }
 
+.p-2 {
+  padding: 2rem;
+}
+
+.button {
+  padding: 0.35rem;
+  padding-right: 0.8rem;
+  height: 32px;
+}
+
+.search-wrapper {
+  max-width: 44.4rem;
+  min-width: 21.69rem;
+  margin-bottom: 1.25rem;
+  margin-top: 2.2rem;
+}
+
+.obj-img {
+  width: 100%;
+}
+
+.gap-15 {
+  gap: 15px;
+}
+
+.icon-button {
+  padding: 0;
+}
+
+header {
+  margin-bottom: 3.75rem;
+}
+
+header h1 {
+  margin-block-start: 0.7rem;
+  margin-block-end: 0.7rem;
+}
+
+h2 {
+  margin-bottom: 0.7rem;
+}
+
+h3 {
+  margin: 0.8rem 0;
+}
+
+li p {
+  margin: 0.5rem 0;
+}
+
 hr {
   width: 16.5rem;
+  margin-bottom: 1rem;
 }
 
 hr.objects-hr {
   width: 95%;
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.125rem;
 }
 
 input {
   width: 18rem;
+}
+
+h2.discoveries-heading-text {
+  padding-left: 0.7rem;
+}
+
+a.plus-check {
+  display: flex;
+  align-items: center;
+}
+
+i {
+  padding: 0 0.5rem;
+}
+
+i.fa-search {
+  padding-left: 0.5rem;
+  padding-right: 1.2rem;
+}
+
+i.fa-paint-brush {
+  padding-left: 0.1rem;
+  padding-right: 0.4rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -42,6 +127,10 @@ input {
 
   .search-wrapper {
     width: 44.4rem;
+  }
+
+  h2.discoveries-heading-text {
+    padding-left: 0;
   }
 
   hr {
