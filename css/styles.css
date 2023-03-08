@@ -206,3 +206,26 @@ li p {
   text-decoration: none;
   color: inherit;
 }
+
+.error-msg {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.drk-gry {
+  color: #333;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.link {
+  color: #1b3767;
+}
+
+.link:hover,
+.link:active,
+.link:focus {
+  color: #eb0029;
+}

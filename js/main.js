@@ -8,6 +8,8 @@ var $discoverLink = document.getElementById('discover-link');
 var $lis = document.getElementsByTagName('li');
 var $mustSeePage = document.getElementById('must-see');
 var $mustSeeList = document.getElementById('must-see-list');
+const $searchLink = document.getElementById('search-link');
+const $emptySavedMessage = document.getElementById('empty-saved-msg');
 
 // Empty array to store Met object IDs in once acquired from the API
 var objIdArr = [];
@@ -200,9 +202,12 @@ function contentLoadedHandler(event) {
     $discoveriesList.append(renderObjectInfo(randomObj));
   }
 
-  // Add saved Items to the must-see list:
-  for (var savedObj of data.saved) {
-    $mustSeeList.append(renderSavedObjectInfo(savedObj));
+  // Add saved Items to the must-see list or show empty list error message:
+  if (data.saved.length !== 0) {
+    $emptySavedMessage.classList.add('hidden');
+    for (var savedObj of data.saved) {
+      $mustSeeList.append(renderSavedObjectInfo(savedObj));
+    }
   }
 
   // Only show the appropriate page based on data.view value:
@@ -221,7 +226,7 @@ window.addEventListener('DOMContentLoaded', contentLoadedHandler);
 function handleShowDiscoverClick(event) {
 
   // Logic gate:
-  if (!event.target.matches('.view-link')) {
+  if (!event.target.matches('.search')) {
     return;
   }
 
@@ -231,6 +236,7 @@ function handleShowDiscoverClick(event) {
 }
 
 $discoverLink.addEventListener('click', handleShowDiscoverClick);
+$searchLink.addEventListener('click', handleShowDiscoverClick);
 
 // Listen for clicks on discoveries ul and change the plus icon to a checkmark icon:
 function addToMustSee(event) {
