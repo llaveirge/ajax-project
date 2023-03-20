@@ -30,8 +30,7 @@ h3 {
 }
 
 hr {
-  border: 1.2px solid #1b3767;
-  background-color: #1b3767;
+  border: 1px solid #1b3767;
 }
 
 li {
@@ -60,11 +59,6 @@ input:focus {
 
 .search-wrapper:focus-within {
   border-color: #eb0029;
-}
-
-a.plus-check {
-  display: flex;
-  align-items: center;
 }
 
 i {
@@ -100,10 +94,6 @@ i.fa-check {
 .fa-eye-slash,
 .fa-trash {
   color: #b6b6b6;
-}
-
-.align-items-center {
-  align-items: center;
 }
 
 .icon-button {
