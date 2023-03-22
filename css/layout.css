@@ -69,7 +69,7 @@ a.plus-check {
   max-width: 650px;
   min-width: 320px;
   margin: 0 auto;
-  padding: 0 0.25rem;
+  padding: 0 0.5rem;
 }
 
 .col-full,
@@ -84,6 +84,21 @@ a.plus-check {
 
 .hero-img {
   width: 100%;
+}
+
+.banner-container {
+  max-width: 650px;
+  min-width: 320px;
+  max-height: 250px;
+  margin: 0 auto;
+  padding: 0 0.25rem;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
 }
 
 .p-container {
@@ -153,6 +168,11 @@ a.plus-check {
 
 @media screen and (min-width: 750px) {
   .container {
+    max-width: 950px;
+  }
+
+  .banner-container {
+    max-height: 400px;
     max-width: 950px;
   }
 
