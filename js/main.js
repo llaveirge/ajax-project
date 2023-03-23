@@ -409,3 +409,19 @@ function handleShowMustSeeClick(event) {
 }
 
 $mustSeeLink.addEventListener('click', handleShowMustSeeClick);
+
+function handleHashChange(event) {
+
+  if (location.hash === '#must-see') {
+    $searchPage.classList.add('hidden');
+    $discoveriesPage.classList.add('hidden');
+    $mustSeePage.classList.remove('hidden');
+  } else {
+    $searchPage.classList.remove('hidden');
+    $discoveriesPage.classList.add('hidden');
+    $mustSeePage.classList.add('hidden');
+  }
+
+}
+
+window.addEventListener('hashchange', handleHashChange);
