@@ -8,6 +8,7 @@ var $discoverLink = document.getElementById('discover-link');
 var $lis = document.getElementsByTagName('li');
 var $mustSeePage = document.getElementById('must-see');
 var $mustSeeList = document.getElementById('must-see-list');
+const $mustSeeLink = document.getElementById('must-see-link');
 const $searchLink = document.getElementById('search-link');
 const $emptySavedMessage = document.getElementById('empty-saved-msg');
 
@@ -393,3 +394,16 @@ function toggleSeen(event) {
 }
 
 $mustSeeList.addEventListener('click', toggleSeen);
+
+function handleShowMustSeeClick(event) {
+  // Logic gate:
+  if (!event.target.matches('.must-see')) {
+    return;
+  }
+
+  $searchPage.classList.add('hidden');
+  $discoveriesPage.classList.add('hidden');
+  $mustSeePage.classList.remove('hidden');
+}
+
+$mustSeeLink.addEventListener('click', handleShowMustSeeClick);
