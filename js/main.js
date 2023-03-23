@@ -254,6 +254,8 @@ function addToMustSee(event) {
     var clickedLi = event.target.closest('li');
     var clickedObjId = +clickedLi.id;
 
+    $emptySavedMessage.classList.add('hidden');
+
     // Assign 'nextObjId' to the clicked object's object literal in the randomObjId array *reconsider the name 'nextObjId'*:
     for (var randomObject of data.searchObjects) {
       if (randomObject.objMetId === clickedObjId) {

@@ -90,14 +90,14 @@
         </ul>
       </div>
 
-      <div class="view" data-view="must-see" id="must-see">
+      <div class="view hidden" data-view="must-see" id="must-see">
         <div class="row">
           <div class="col-full">
             <h2 class="must-see-heading-text">Must-See List</h2>
             <hr class="objects-hr">
           </div>
         </div>
-        <div class="row">
+        <div class="row" id="empty-saved-msg">
           <div class="col-full display-flex justify-center">
             <div class="banner-container">
               <img
@@ -108,10 +108,8 @@
               />
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-full">
-            <h2 class="error-msg met-red" id="empty-saved-msg">
+            <h2 class="error-msg met-red">
               No items have been added to your Must-See List yet.
             </h2>
             <h3 class="error-msg drk-gry">
