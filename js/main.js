@@ -46,6 +46,7 @@ function searchEventHandler(event) {
   // Hide search form and show discoveries:
   $searchPage.classList.add('hidden');
   $discoveriesPage.classList.remove('hidden');
+  location.hash = '#discoveries';
 
   // Function to retrieve object ID numbers from The Met API and save in objIdArr array:
   var queryXhr = new XMLHttpRequest();
@@ -416,6 +417,10 @@ function handleHashChange(event) {
     $searchPage.classList.add('hidden');
     $discoveriesPage.classList.add('hidden');
     $mustSeePage.classList.remove('hidden');
+  } else if (location.hash === '#discoveries') {
+    $searchPage.classList.add('hidden');
+    $discoveriesPage.classList.remove('hidden');
+    $mustSeePage.classList.add('hidden');
   } else {
     $searchPage.classList.remove('hidden');
     $discoveriesPage.classList.add('hidden');
