@@ -13,7 +13,8 @@ i.fa-paint-brush {
 }
 
 ul {
-  padding: 0.5rem 0.6rem;
+  margin: auto auto 1rem;
+  padding: 0.5rem;
 }
 
 li {
@@ -31,7 +32,7 @@ header h1 {
 }
 
 h2 {
-  margin-bottom: 0.7rem;
+  margin: auto 0.5rem 0.88rem;
 }
 
 h3 {
@@ -47,17 +48,8 @@ hr {
   margin-bottom: 1rem;
 }
 
-hr.objects-hr {
-  width: 95%;
-  margin-bottom: 1rem;
-}
-
 input {
   width: 18rem;
-}
-
-h2.discoveries-heading-text {
-  padding-left: 0.7rem;
 }
 
 a.plus-check {
@@ -168,7 +160,7 @@ a.plus-check {
 
 @media screen and (min-width: 750px) {
   .container {
-    max-width: 950px;
+    max-width: 954px;
   }
 
   .banner-container {
@@ -194,16 +186,12 @@ a.plus-check {
     padding-left: 0;
   }
 
-  h2.discoveries-heading-text {
-    padding-left: 0;
+  h2 {
+    margin: auto 0.5rem 1.13rem;
   }
 
   hr {
     width: 31.125rem;
-  }
-
-  hr.objects-hr {
-    width: 100%;
   }
 
   input {
