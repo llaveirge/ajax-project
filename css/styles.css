@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  /* background-color: white; */
   font-family: Lato, serif;
 }
 
@@ -10,7 +10,7 @@ header {
   filter: drop-shadow(0 2px 2px rgb(165, 156, 156));
 }
 
-header h1 {
+h1 {
   font-size: 2.125rem;
 }
 
@@ -20,7 +20,7 @@ h2 {
   color: #264d8f;
 }
 
-h2.discover {
+.discover {
   text-align: center;
 }
 
@@ -32,6 +32,8 @@ h3 {
 hr {
   border: 1px solid #264d8f;
 }
+
+/* tested li with one saved obj */
 
 li {
   list-style: none;

@@ -186,8 +186,10 @@ a.plus-check {
     padding-left: 0;
   }
 
+  /* h2 margin was 1.13rem */
+
   h2 {
-    margin: auto 0.5rem 1.13rem;
+    margin: auto 0.5rem 0.88rem;
   }
 
   hr {

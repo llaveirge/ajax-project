@@ -2,8 +2,25 @@
 
 let data = {
   view: 'search-form',
-  searchObjects: [],
-  saved: [],
+  searchObjects: [{
+    objImgUrl: './images/met-gallery.webp',
+    objTitle: 'test object 2',
+    objArtist: 'That one guy again',
+    objMedium: 'clay',
+    objGallery: ': Laveirge Gallery',
+    objUrl: 'www.thisgoesnowhere.com',
+    objMetId: '123456',
+    onbjSaved: false
+  }],
+  saved: [{
+    objImgUrl: './images/met-gallery.webp',
+    objTitle: 'test object',
+    objArtist: 'That one guy',
+    objMedium: 'clay',
+    objGallery: 'Laveirge Gallery',
+    objUrl: 'www.thisgoesnowhere.com',
+    seen: false
+  }],
   nextObjId: 1
 };
 
