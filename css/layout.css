@@ -46,10 +46,16 @@ li p {
 hr {
   width: 16.5rem;
   margin-bottom: 1.375rem;
+  margin-top: 0;
+}
+
+input,
+label {
+  width: 100%;
 }
 
 input {
-  width: 18rem;
+  padding: 0.688rem 0.125rem;
 }
 
 a.plus-check {
@@ -71,7 +77,7 @@ a.plus-check {
 
 .hero-img-container {
   width: 347px;
-  padding-bottom: 2rem;
+  padding-bottom: 3.15rem;
 }
 
 .hero-img {
@@ -108,8 +114,9 @@ a.plus-check {
 }
 
 .search-wrapper {
-  max-width: 44.4rem;
-  min-width: 21.69rem;
+  max-width: 44.438rem;
+  min-width: 18.865rem;
+  width: 100%;
   margin-bottom: 1.25rem;
   margin-top: 2.032rem;
 }
@@ -177,10 +184,6 @@ a.plus-check {
     width: 50%;
   }
 
-  .search-wrapper {
-    width: 44.4rem;
-  }
-
   .obj-img-container {
     padding-right: 1.8rem;
     padding-left: 0;
@@ -194,9 +197,5 @@ a.plus-check {
 
   hr {
     width: 31.125rem;
-  }
-
-  input {
-    width: 41.5rem;
   }
 }
