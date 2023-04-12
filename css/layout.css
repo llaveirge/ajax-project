@@ -64,7 +64,8 @@ a.plus-check {
 }
 
 .container {
-  max-width: 650px;
+  /* max-width: 650px; */
+  max-width: 670px;
   min-width: 320px;
   margin: 0 auto;
   padding: 0 0.5rem;
@@ -177,7 +178,7 @@ a.plus-check {
 
   .col-full,
   .col-half {
-    padding: 0 0.5rem;
+    padding: 0;
   }
 
   .col-half {
