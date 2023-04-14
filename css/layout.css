@@ -63,6 +63,10 @@ a.plus-check {
   align-items: center;
 }
 
+.error-msg {
+  margin: 0.8rem 0.5rem;
+}
+
 .container {
   /* max-width: 650px; */
   max-width: 670px;
@@ -89,8 +93,8 @@ a.plus-check {
   max-width: 650px;
   min-width: 320px;
   max-height: 250px;
-  margin: 0 auto;
-  padding: 0 0.25rem;
+  margin: 0 auto 1.5rem;
+  padding: 0 0.5rem;
 }
 
 .banner-img {
@@ -193,7 +197,17 @@ a.plus-check {
   /* h2 margin was 1.13rem */
 
   h2 {
+    margin: auto 0.5rem 1.625rem;
+
+    /* verify mobile margins, not updated */
+  }
+
+  h2.discover {
     margin: auto 0.5rem 0.88rem;
+
+    /* Need this for Discover page margin with hr */
+
+    /* verify mobile margins, not updated */
   }
 
   hr {
