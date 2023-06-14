@@ -14,7 +14,7 @@ i.fa-paint-brush {
 
 ul {
   margin: auto auto 1rem;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
 }
 
 li {
@@ -32,8 +32,10 @@ header h1 {
 }
 
 h2 {
-  margin: auto 0.5rem 0.88rem;
+  margin: auto 0.5rem 1.375rem;
 }
+
+/* h2 bottom margin was 0.88rem */
 
 h3 {
   margin: 0.8rem 0;
@@ -64,7 +66,7 @@ a.plus-check {
 }
 
 .error-msg {
-  margin: 0.8rem 0.5rem;
+  margin: auto 0.5rem 0.5rem;
 }
 
 .container {
@@ -190,7 +192,7 @@ a.plus-check {
   }
 
   .obj-img-container {
-    padding-right: 1.8rem;
+    padding-right: 1.75rem;
     padding-left: 0;
   }
 
@@ -198,8 +200,6 @@ a.plus-check {
 
   h2 {
     margin: auto 0.5rem 1.625rem;
-
-    /* verify mobile margins, not updated */
   }
 
   h2.discover {
