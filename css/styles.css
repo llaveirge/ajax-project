@@ -11,12 +11,11 @@ header {
 }
 
 h1 {
-  font-size: 2.125rem;
+  font-size: 1.875rem;
 }
 
 h2 {
   font-family: "Libre Baskerville", serif;
-  font-size: 1.75rem;
   color: #264d8f;
 }
 
@@ -25,7 +24,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.56rem;
+  /* font-size: 1.56rem; */
   font-weight: 400;
 }
 
@@ -174,4 +173,18 @@ i.fa-check {
   display: block;
   padding-bottom: 1rem;
   border-bottom: 2px solid #264d8f;
+}
+
+@media screen and (min-width: 750px) {
+  h1 {
+    font-size: 2.125rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.56rem;
+  }
 }
