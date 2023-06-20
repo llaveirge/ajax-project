@@ -326,7 +326,10 @@ function renderSavedObjectInfo(object) {
   $infoColumnDiv.appendChild($pGallery);
 
   var $buttonContainer = document.createElement('div');
-  $buttonContainer.setAttribute('class', 'button-container must-see-buttons display-flex justify-space-between');
+  $buttonContainer.setAttribute(
+    'class',
+    'button-container must-see-buttons display-flex justify-space-between'
+  );
   $infoColumnDiv.appendChild($buttonContainer);
 
   var $learnMoreAnchor = document.createElement('a');
@@ -407,6 +410,7 @@ function handleShowMustSeeClick(event) {
   $searchPage.classList.add('hidden');
   $discoveriesPage.classList.add('hidden');
   $mustSeePage.classList.remove('hidden');
+  location.hash = '#must-see';
 }
 
 $mustSeeLink.addEventListener('click', handleShowMustSeeClick);

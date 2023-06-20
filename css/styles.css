@@ -53,6 +53,16 @@ input:focus {
   outline: none;
 }
 
+button.must-see {
+  background-color: #eb0029;
+  border: none;
+  padding: 0;
+}
+
+button.must-see:hover {
+  cursor: pointer;
+}
+
 .search-wrapper {
   border: 2px solid #264d8f;
   background-color: #f5f5f5;
@@ -134,6 +144,7 @@ i.fa-check {
 
 .button:hover {
   border: 1px solid #264d8f;
+  background-color: #264d8f;
 }
 
 .view-link {
