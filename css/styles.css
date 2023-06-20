@@ -1,5 +1,4 @@
 body {
-  /* background-color: white; */
   font-family: Lato, serif;
 }
 
@@ -24,15 +23,12 @@ h2 {
 }
 
 h3 {
-  /* font-size: 1.56rem; */
   font-weight: 400;
 }
 
 hr {
   border: 1px solid #264d8f;
 }
-
-/* tested li with one saved obj */
 
 li {
   list-style: none;
