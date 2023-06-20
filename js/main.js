@@ -8,7 +8,7 @@ var $discoverLink = document.getElementById('discover-link');
 var $lis = document.getElementsByTagName('li');
 var $mustSeePage = document.getElementById('must-see');
 var $mustSeeList = document.getElementById('must-see-list');
-const $mustSeeLink = document.getElementById('must-see-link');
+const $mustSeeNav = document.getElementById('must-see-nav');
 const $searchLink = document.getElementById('search-link');
 const $emptySavedMessage = document.getElementById('empty-saved-msg');
 
@@ -413,7 +413,7 @@ function handleShowMustSeeClick(event) {
   location.hash = '#must-see';
 }
 
-$mustSeeLink.addEventListener('click', handleShowMustSeeClick);
+$mustSeeNav.addEventListener('click', handleShowMustSeeClick);
 
 function handleHashChange(event) {
 
