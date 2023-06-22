@@ -54,7 +54,6 @@ hr {
   margin-top: 0;
 }
 
-/* Resume here */
 input,
 label {
   width: 100%;
@@ -62,11 +61,6 @@ label {
 
 input {
   padding: 0.688rem 0.125rem;
-}
-
-a.plus-check {
-  display: flex;
-  align-items: center;
 }
 
 .error-msg {
@@ -112,10 +106,7 @@ a.plus-check {
   max-width: 26rem;
 }
 
-.p-2 {
-  padding: 2rem;
-}
-
+/* resume here */
 .button {
   padding: 0.35rem;
   padding-right: 0.8rem;
