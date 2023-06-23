@@ -106,7 +106,6 @@ input {
   max-width: 26rem;
 }
 
-/* resume here */
 .button {
   padding: 0.35rem;
   padding-right: 0.8rem;
@@ -173,18 +172,12 @@ input {
     max-width: 950px;
   }
 
-  .col-full,
-  .col-half {
-    padding: 0;
-  }
-
   .col-half {
     width: 50%;
   }
 
   .obj-img-container {
     padding-right: 1.75rem;
-    padding-left: 0;
   }
 
   h2 {
