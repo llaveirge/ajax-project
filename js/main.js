@@ -18,7 +18,8 @@ var objIdArr = [];
 // Empty array to store four random object IDs from the 'objIdArr' array:
 var randomObjIds = [];
 
-// Listen for events and save search value to a variable before resetting the form:
+/* Listen for events and save search value to a variable before resetting the
+form: */
 var query;
 
 function searchEventHandler(event) {
@@ -30,12 +31,14 @@ function searchEventHandler(event) {
   // Start with a clean, empty 'randomObjIds' if not empty already:
   randomObjIds = [];
 
-  // Start with a clean, empty 'searchObj' property in the data model if not empty already:
+  /* Start with a clean, empty 'searchObj' property in the data model if not
+  empty already: */
   data.searchObjects = [];
 
-  // Remove any previous created 'li' elements from the DOM to display new results only:
+  /* Remove any previous created 'li' elements from the DOM to display new
+  results only: */
   if ($discoveriesList.childNodes.length > 1) {
-    for (var i = 0; i <= 3; i++) {
+    for (let i = 0; i <= 3; i++) {
       $discoveriesList.removeChild($lis[0]);
     }
   }
@@ -48,23 +51,30 @@ function searchEventHandler(event) {
   $discoveriesPage.classList.remove('hidden');
   location.hash = '#discoveries';
 
-  // Function to retrieve object ID numbers from The Met API and save in objIdArr array:
-  var queryXhr = new XMLHttpRequest();
-  queryXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/search?isOnView=true&q=' + query);
+  /* Function to retrieve object ID numbers from The Met API and save in
+  objIdArr array: */
+  const queryXhr = new XMLHttpRequest();
+  queryXhr.open(
+    'GET',
+    'https://collectionapi.metmuseum.org/public/collection/v1/search?isOnView=true&q=' +
+    query
+  );
   queryXhr.responseType = 'json';
   queryXhr.addEventListener('load', function () {
-    var responseObjectIds = queryXhr.response.objectIDs;
+    const responseObjectIds = queryXhr.response.objectIDs;
 
-    // Add response IDs to objIdArr array - *Test capturing only random Ids in API call*:
-    for (var id of responseObjectIds) {
+    /* Add response IDs to objIdArr array - *Test capturing only random Ids in
+    API call for faster load times?*: */
+    for (const id of responseObjectIds) {
       objIdArr.push(id);
     }
 
     // Call 'randomize' on 'objIdArr' array:
     randomize(objIdArr);
 
-    // Loop through 'randomObjIds' array and call 'getObjectInfo' on each ID in the array:
-    for (var objId of randomObjIds) {
+    /* Loop through 'randomObjIds' array and call 'getObjectInfo' on each ID in
+    the array: */
+    for (const objId of randomObjIds) {
       getObjectInfo(objId);
     }
   });
@@ -74,24 +84,29 @@ function searchEventHandler(event) {
 
 $searchForm.addEventListener('submit', searchEventHandler);
 
-/* Function to select and remove 4 random Met museum object IDs from the 'objIdArr' array
-and add them to the 'randomObjIds' array: */
+/* Function to select and remove 4 random Met museum object IDs from the
+'objIdArr' array and add them to the 'randomObjIds' array: */
 function randomize(array) {
-  for (var i = 0; i < 4; i++) {
-    var randomIndex = Math.floor(Math.random() * array.length);
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = Math.floor(Math.random() * array.length);
     randomObjIds.push(`${objIdArr.splice(randomIndex, 1)}`);
   }
 }
 
-// Function to retrieve randomized object data from Met API and store in 'searchObjects' property of data model:
+/* Function to retrieve randomized object data from Met API and store in
+'searchObjects' property of data model: */
 function getObjectInfo(objectId) {
-  var dataXhr = new XMLHttpRequest();
-  dataXhr.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + objectId);
+  const dataXhr = new XMLHttpRequest();
+  dataXhr.open(
+    'GET',
+    'https://collectionapi.metmuseum.org/public/collection/v1/objects/' +
+    objectId
+  );
   dataXhr.responseType = 'json';
   dataXhr.addEventListener('load', function () {
-    var response = dataXhr.response;
+    const response = dataXhr.response;
 
-    var objectData = {
+    const objectData = {
       objImgUrl: response.primaryImageSmall,
       objTitle: response.title,
       objArtist: response.artistDisplayName,
@@ -103,7 +118,7 @@ function getObjectInfo(objectId) {
 
     data.searchObjects.push(objectData);
 
-    // Display the four random objects on the Discoveries page without reloading:
+    // Display the four random objects on the Discoveries page w/o reloading:
     $discoveriesList.append(renderObjectInfo(objectData));
   });
 
@@ -112,35 +127,37 @@ function getObjectInfo(objectId) {
 
 // Define a function that returns a DOM tree for each object:
 function renderObjectInfo(object) {
-  var $li = document.createElement('li');
+  const $li = document.createElement('li');
   $li.setAttribute('class', 'object display-flex wrap discovery-item');
   $li.setAttribute('id', object.objMetId);
 
-  var $divObjImgCont = document.createElement('div');
+  const $divObjImgCont = document.createElement('div');
   $divObjImgCont.setAttribute('class', 'obj-img-container col-full col-half');
   $li.appendChild($divObjImgCont);
 
-  // *Add a default image for those that don't have an image or permission to share image*
-  var $objImg = document.createElement('img');
+  /* *Add a default image for those that don't have an image or permission to
+  share image or prevent them from rendering* */
+  const $objImg = document.createElement('img');
   $objImg.setAttribute('class', 'obj-img');
   $objImg.setAttribute('src', object.objImgUrl);
   $objImg.setAttribute('alt', object.objTitle);
   $divObjImgCont.appendChild($objImg);
 
-  var $infoColumnDiv = document.createElement('div');
+  const $infoColumnDiv = document.createElement('div');
   $infoColumnDiv.setAttribute('class', 'col-full col-half');
   $li.appendChild($infoColumnDiv);
 
-  var $h3Title = document.createElement('h3');
+  const $h3Title = document.createElement('h3');
   $h3Title.setAttribute('class', 'title');
-  var $h3TitleText = document.createTextNode(object.objTitle);
+  const $h3TitleText = document.createTextNode(object.objTitle);
   $h3Title.appendChild($h3TitleText);
   $infoColumnDiv.appendChild($h3Title);
 
-  var $pArtist = document.createElement('p');
+  const $pArtist = document.createElement('p');
   $pArtist.setAttribute('class', 'artist');
+  let $pArtistText;
   if (object.objArtist !== '') {
-    var $pArtistText = document.createTextNode(object.objArtist);
+    $pArtistText = document.createTextNode(object.objArtist);
   } else {
     $pArtistText = document.createTextNode('Artist Unknown');
   }
@@ -148,49 +165,48 @@ function renderObjectInfo(object) {
   $pArtist.appendChild($pArtistText);
   $infoColumnDiv.appendChild($pArtist);
 
-  var $pMedium = document.createElement('p');
+  const $pMedium = document.createElement('p');
   $pMedium.setAttribute('class', 'medium');
-  var $pMediumText = document.createTextNode(object.objMedium);
+  const $pMediumText = document.createTextNode(object.objMedium);
   $pMedium.appendChild($pMediumText);
   $infoColumnDiv.appendChild($pMedium);
 
-  var $pGallery = document.createElement('p');
+  const $pGallery = document.createElement('p');
   $pGallery.setAttribute('class', 'gallery');
-  var $pGalleryText = document.createTextNode('Gallery ');
-  var $pGalleryNumber = document.createTextNode(object.objGallery);
+  const $pGalleryText = document.createTextNode('Gallery ');
+  const $pGalleryNumber = document.createTextNode(object.objGallery);
   $pGallery.appendChild($pGalleryText);
   $pGallery.appendChild($pGalleryNumber);
   $infoColumnDiv.appendChild($pGallery);
 
-  var $buttonContainer = document.createElement('div');
+  const $buttonContainer = document.createElement('div');
   $buttonContainer.setAttribute(
-    'class', 'button-container display-flex justify-space-between'
+    'class',
+    'button-container display-flex justify-space-between'
   );
   $infoColumnDiv.appendChild($buttonContainer);
 
-  var $learnMoreAnchor = document.createElement('a');
+  const $learnMoreAnchor = document.createElement('a');
   $learnMoreAnchor.setAttribute('class', 'button');
   $learnMoreAnchor.setAttribute('href', object.objUrl);
   $learnMoreAnchor.setAttribute('target', '_blank');
-  var $paintIcon = document.createElement('i');
+  const $paintIcon = document.createElement('i');
   $paintIcon.setAttribute('class', 'fas fa-paint-brush');
   $learnMoreAnchor.appendChild($paintIcon);
-  var $learnMoreText = document.createTextNode('LEARN MORE');
+  const $learnMoreText = document.createTextNode('LEARN MORE');
   $learnMoreAnchor.appendChild($learnMoreText);
   $buttonContainer.appendChild($learnMoreAnchor);
 
-  var $plusIconButton = document.createElement('button');
-  $plusIconButton.setAttribute('class', 'must-see-button icon-button plus-check');
+  const $plusIconButton = document.createElement('button');
+  $plusIconButton.setAttribute('class', 'must-see-btn icon-button plus-check');
   $plusIconButton.setAttribute('type', 'button');
-  // add aria-pressed attribute
+  // *add aria-pressed attribute*
 
-  var $plusIcon = document.createElement('i');
-  // If saved, show checkmark instead of plus icon:
-  if (object.saved === true) {
-    $plusIcon.setAttribute('class', 'must-see-button saved fas fa-check fa-lg');
-  } else {
-    $plusIcon.setAttribute('class', 'must-see-button add fas fa-plus fa-lg');
-  }
+  const $plusIcon = document.createElement('i');
+  // If saved, show check mark instead of plus icon:
+  object.saved
+    ? $plusIcon.setAttribute('class', 'must-see-btn saved fas fa-check fa-lg')
+    : $plusIcon.setAttribute('class', 'must-see-btn add fas fa-plus fa-lg');
 
   $plusIconButton.appendChild($plusIcon);
   $buttonContainer.appendChild($plusIconButton);
@@ -198,22 +214,23 @@ function renderObjectInfo(object) {
   return $li;
 }
 
-// Listen for the 'DOMContentLoaded' event and add the 4 random objects to the Discoveries list:
+/* Listen for the 'DOMContentLoaded' event and add the 4 random objects to the
+Discoveries list: */
 function contentLoadedHandler(event) {
-  for (var randomObj of data.searchObjects) {
+  for (const randomObj of data.searchObjects) {
     $discoveriesList.append(renderObjectInfo(randomObj));
   }
 
   // Add saved Items to the must-see list or show empty list error message:
   if (data.saved.length !== 0) {
     $emptySavedMessage.classList.add('hidden');
-    for (var savedObj of data.saved) {
+    for (const savedObj of data.saved) {
       $mustSeeList.append(renderSavedObjectInfo(savedObj));
     }
   }
 
   // Only show the appropriate page based on data.view value:
-  for (var viewNode of $viewNodeList) {
+  for (const viewNode of $viewNodeList) {
     if (viewNode.id !== data.view) {
       viewNode.classList.add('hidden');
     } else {
@@ -224,7 +241,8 @@ function contentLoadedHandler(event) {
 
 window.addEventListener('DOMContentLoaded', contentLoadedHandler);
 
-// Listen for clicks on palette icon and 'discover' h1 heading and show search page:
+/* Listen for clicks on palette icon and 'discover' h1 heading and show search
+ page: */
 function handleShowDiscoverClick(event) {
 
   // Logic gate:
@@ -240,9 +258,10 @@ function handleShowDiscoverClick(event) {
 $discoverLink.addEventListener('click', handleShowDiscoverClick);
 $searchLink.addEventListener('click', handleShowDiscoverClick);
 
-// Listen for clicks on discoveries ul and change the plus icon to a checkmark icon:
+/* Listen for clicks on discoveries ul and change the plus icon to a check
+mark icon: */
 function addToMustSee(event) {
-  if (!event.target.classList.contains('must-see-button')) {
+  if (!event.target.classList.contains('must-see-btn')) {
     return;
   }
 
@@ -252,13 +271,14 @@ function addToMustSee(event) {
   if (saveIcon.matches('.fa-plus')) {
     saveIcon.classList.replace('fa-plus', 'fa-check');
 
-    var clickedLi = event.target.closest('li');
-    var clickedObjId = +clickedLi.id;
+    const clickedLi = event.target.closest('li');
+    const clickedObjId = +clickedLi.id;
 
     $emptySavedMessage.classList.add('hidden');
 
-    // Assign 'nextObjId' to the clicked object's object literal in the randomObjId array *reconsider the name 'nextObjId'*:
-    for (var randomObject of data.searchObjects) {
+    /* Assign 'nextObjId' to the clicked object's object literal in the
+    randomObjId array *reconsider the name 'nextObjId'*: */
+    for (const randomObject of data.searchObjects) {
       if (randomObject.objMetId === clickedObjId) {
         randomObject.nextObjId = data.nextObjId;
         data.saved.unshift(randomObject);
@@ -273,6 +293,8 @@ function addToMustSee(event) {
 }
 
 $discoveriesList.addEventListener('click', addToMustSee);
+
+// resume here
 
 // Define a function that returns a DOM tree for each saved object:
 function renderSavedObjectInfo(object) {
