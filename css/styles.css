@@ -50,6 +50,7 @@ input:focus {
 }
 
 button.must-see {
+  /* consider renaming to more precise class name if only referring to nav */
   background-color: #eb0029;
   border: none;
   padding: 0;
@@ -84,24 +85,24 @@ i {
   font-size: 1.75rem;
 }
 
-i.fa-search {
+.fa-search {
   color: #264d8f;
 }
 
-i.fa-plus {
+.fa-plus {
   color: #eb0029;
   font-size: 1.55rem;
 }
 
-i.fa-plus:hover {
+.fa-plus:hover {
   color: #264d8f;
 }
 
-i.fa-paint-brush {
+.fa-paint-brush {
   font-size: 1.25rem;
 }
 
-i.fa-check {
+.fa-check {
   color: #264d8f;
   font-size: 1.565rem;
   padding-right: 0.25rem;
@@ -121,6 +122,10 @@ i.fa-check {
   cursor: pointer;
 }
 
+.icon-button:focus-visible > i {
+  color: #264d8f;
+}
+
 .met-blue {
   color: #264d8f;
 }
@@ -128,7 +133,6 @@ i.fa-check {
 .discover-text {
   text-align: center;
   line-height: 150%;
-  color: #264d8f;
 }
 
 .button {
@@ -138,7 +142,8 @@ i.fa-check {
   border-radius: 3px;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   border: 1px solid #264d8f;
   background-color: #264d8f;
 }
@@ -171,7 +176,8 @@ i.fa-check {
 
 .link:hover,
 .link:active,
-.link:focus {
+.link:focus,
+.link:focus-visible {
   color: #eb0029;
 }
 
@@ -192,6 +198,6 @@ i.fa-check {
   }
 
   h3 {
-    font-size: 1.56rem;
+    font-size: 1.562rem;
   }
 }
