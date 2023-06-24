@@ -34,10 +34,6 @@ li {
   border-radius: 2px;
 }
 
-i {
-  color: white;
-}
-
 input {
   font-family: inherit;
   font-size: 1rem;
@@ -83,6 +79,7 @@ button.must-see:hover {
 
 .fa-list-ul {
   font-size: 1.75rem;
+  color: white;
 }
 
 .fa-search {
