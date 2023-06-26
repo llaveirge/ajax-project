@@ -1,26 +1,26 @@
-var $searchInput = document.getElementById('search');
-var $searchForm = document.getElementById('form');
-var $discoveriesList = document.getElementById('discoveries-list');
-var $discoveriesPage = document.getElementById('discoveries');
-var $searchPage = document.getElementById('search-form');
-var $viewNodeList = document.querySelectorAll('.view');
-var $discoverLink = document.getElementById('discover-link');
-var $lis = document.getElementsByTagName('li');
-var $mustSeePage = document.getElementById('must-see');
-var $mustSeeList = document.getElementById('must-see-list');
+const $searchInput = document.getElementById('search');
+const $searchForm = document.getElementById('form');
+const $discoveriesList = document.getElementById('discoveries-list');
+const $discoveriesPage = document.getElementById('discoveries');
+const $searchPage = document.getElementById('search-form');
+const $viewNodeList = document.querySelectorAll('.view');
+const $discoverLink = document.getElementById('discover-link');
+const $lis = document.getElementsByTagName('li');
+const $mustSeePage = document.getElementById('must-see');
+const $mustSeeList = document.getElementById('must-see-list');
 const $mustSeeNav = document.getElementById('must-see-nav');
 const $searchLink = document.getElementById('search-link');
 const $emptySavedMessage = document.getElementById('empty-saved-msg');
 
 // Empty array to store Met object IDs in once acquired from the API
-var objIdArr = [];
+let objIdArr = [];
 
 // Empty array to store four random object IDs from the 'objIdArr' array:
-var randomObjIds = [];
+let randomObjIds = [];
 
 /* Listen for events and save search value to a variable before resetting the
 form: */
-var query;
+let query;
 
 function searchEventHandler(event) {
   event.preventDefault();
@@ -298,34 +298,35 @@ $discoveriesList.addEventListener('click', addToMustSee);
 
 // Define a function that returns a DOM tree for each saved object:
 function renderSavedObjectInfo(object) {
-  var $li = document.createElement('li');
+  const $li = document.createElement('li');
   $li.setAttribute('class', 'object display-flex wrap');
   $li.setAttribute('id', object.nextObjId);
 
-  var $divObjImgCont = document.createElement('div');
+  const $divObjImgCont = document.createElement('div');
   $divObjImgCont.setAttribute('class', 'obj-img-container col-full col-half');
   $li.appendChild($divObjImgCont);
 
-  var $objImg = document.createElement('img');
+  const $objImg = document.createElement('img');
   $objImg.setAttribute('class', 'obj-img');
   $objImg.setAttribute('src', object.objImgUrl);
   $objImg.setAttribute('alt', object.objTitle);
   $divObjImgCont.appendChild($objImg);
 
-  var $infoColumnDiv = document.createElement('div');
+  const $infoColumnDiv = document.createElement('div');
   $infoColumnDiv.setAttribute('class', 'col-full col-half');
   $li.appendChild($infoColumnDiv);
 
-  var $h3Title = document.createElement('h3');
+  const $h3Title = document.createElement('h3');
   $h3Title.setAttribute('class', 'title');
-  var $h3TitleText = document.createTextNode(object.objTitle);
+  const $h3TitleText = document.createTextNode(object.objTitle);
   $h3Title.appendChild($h3TitleText);
   $infoColumnDiv.appendChild($h3Title);
 
-  var $pArtist = document.createElement('p');
+  const $pArtist = document.createElement('p');
   $pArtist.setAttribute('class', 'artist');
+  let $pArtistText;
   if (object.objArtist !== '') {
-    var $pArtistText = document.createTextNode(object.objArtist);
+    $pArtistText = document.createTextNode(object.objArtist);
   } else {
     $pArtistText = document.createTextNode('Artist Unknown');
   }
@@ -333,66 +334,73 @@ function renderSavedObjectInfo(object) {
   $pArtist.appendChild($pArtistText);
   $infoColumnDiv.appendChild($pArtist);
 
-  var $pMedium = document.createElement('p');
+  const $pMedium = document.createElement('p');
   $pMedium.setAttribute('class', 'medium');
-  var $pMediumText = document.createTextNode(object.objMedium);
+  const $pMediumText = document.createTextNode(object.objMedium);
   $pMedium.appendChild($pMediumText);
   $infoColumnDiv.appendChild($pMedium);
 
-  var $pGallery = document.createElement('p');
+  const $pGallery = document.createElement('p');
   $pGallery.setAttribute('class', 'gallery');
-  var $pGalleryText = document.createTextNode('Gallery ');
-  var $pGalleryNumber = document.createTextNode(object.objGallery);
+  const $pGalleryText = document.createTextNode('Gallery ');
+  const $pGalleryNumber = document.createTextNode(object.objGallery);
   $pGallery.appendChild($pGalleryText);
   $pGallery.appendChild($pGalleryNumber);
   $infoColumnDiv.appendChild($pGallery);
 
-  var $buttonContainer = document.createElement('div');
+  const $buttonContainer = document.createElement('div');
   $buttonContainer.setAttribute(
     'class',
     'button-container must-see-buttons display-flex justify-space-between'
   );
   $infoColumnDiv.appendChild($buttonContainer);
 
-  var $learnMoreAnchor = document.createElement('a');
+  const $learnMoreAnchor = document.createElement('a');
   $learnMoreAnchor.setAttribute('class', 'button');
   $learnMoreAnchor.setAttribute('href', object.objUrl);
   $learnMoreAnchor.setAttribute('target', '_blank');
-  var $paintIcon = document.createElement('i');
+  const $paintIcon = document.createElement('i');
   $paintIcon.setAttribute('class', 'fas fa-paint-brush');
   $learnMoreAnchor.appendChild($paintIcon);
-  var $learnMoreText = document.createTextNode('LEARN MORE');
+  const $learnMoreText = document.createTextNode('LEARN MORE');
   $learnMoreAnchor.appendChild($learnMoreText);
   $buttonContainer.appendChild($learnMoreAnchor);
 
-  // Above (except for id) is same as previous render function *remove redundant code and make a single function*
-  var $savedIconDiv = document.createElement('div');
+  /* Above (except for id) is same as previous render function *remove redundant
+   code and make a single function* */
+  const $savedIconDiv = document.createElement('div');
   $savedIconDiv.setAttribute('class', 'display-flex align-items-center gap-15');
   $buttonContainer.appendChild($savedIconDiv);
 
-  var $seenButton = document.createElement('button');
+  const $seenButton = document.createElement('button');
   $seenButton.setAttribute('class', 'icon-button seen-button');
   $seenButton.setAttribute('type', 'button');
   $seenButton.setAttribute('aria-pressed', object.seen);
   $savedIconDiv.appendChild($seenButton);
 
-  var $eyeIcon = document.createElement('i');
-  // If seen, show filled eye icon instead of eye prohibition icon *make ternary:
-  if (object.seen) {
-    $eyeIcon.setAttribute('class', 'eye-icon seen-button fas fa-eye fa-lg met-blue');
-  } else {
-    $eyeIcon.setAttribute('class', 'eye-icon seen-button fas fa-eye-slash fa-lg');
-  }
+  const $eyeIcon = document.createElement('i');
+  /* If seen, show filled eye icon instead of eye prohibition icon. Consider
+  adding 'fa-eye-slash' or 'met-blue' to list rather listing full assignment in
+  code block: */
+  object.seen
+    ? $eyeIcon.setAttribute(
+      'class',
+      'eye-icon seen-button fas fa-eye fa-lg met-blue')
+    : $eyeIcon.setAttribute(
+      'class',
+      'eye-icon seen-button fas fa-eye-slash fa-lg')
+  ;
+
   $seenButton.appendChild($eyeIcon);
 
-  var $deleteIcon = document.createElement('i');
+  const $deleteIcon = document.createElement('i');
   $deleteIcon.setAttribute('class', 'delete fas fa-trash fa-lg');
   $savedIconDiv.appendChild($deleteIcon);
 
   return $li;
 }
 
-// consider replacing contains to matches?
+// consider replacing 'contains' to matches?
 function toggleSeen(event) {
   if (!event.target.classList.contains('seen-button')) {
     return;
