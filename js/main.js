@@ -115,7 +115,7 @@ function getObjectInfo(objectId) {
     objectId
   );
   dataXhr.responseType = 'json';
-  dataXhr.addEventListener('load', function () {
+  dataXhr.addEventListener('load', () => {
     const response = dataXhr.response;
 
     const objectData = {
