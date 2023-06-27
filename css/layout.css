@@ -3,13 +3,16 @@ i {
 }
 
 i.fa-search {
-  /* padding-left: 0.5rem; */
   padding-right: 1.2rem;
 }
 
 i.fa-paint-brush {
   padding-left: 0.1rem;
   padding-right: 0.4rem;
+}
+
+i.fa-palette {
+  margin-right: -0.5rem;
 }
 
 ul {
@@ -82,6 +85,7 @@ input {
 .hero-img-container {
   max-width: 347px;
   padding-bottom: 3.15rem;
+  margin: 0 0.5rem;
 }
 
 .hero-img {
@@ -115,7 +119,7 @@ input {
 .search-wrapper {
   max-width: 44.438rem;
   width: 100%;
-  margin-bottom: 1.25rem;
+  margin: 0 0.5rem 1.25rem;
 }
 
 .obj-img {
