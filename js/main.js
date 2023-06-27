@@ -9,8 +9,8 @@ const $lis = document.getElementsByTagName('li');
 const $mustSeePage = document.getElementById('must-see');
 const $mustSeeList = document.getElementById('must-see-list');
 const $mustSeeNav = document.getElementById('must-see-nav');
-const $searchLink = document.getElementById('search-link');
 const $emptySavedMessage = document.getElementById('empty-saved-msg');
+const $emptyDiscMessage = document.getElementById('empty-disc-msg');
 
 // Empty array to store Met object IDs in once acquired from the API
 let objIdArr = [];
@@ -34,6 +34,9 @@ function searchEventHandler(event) {
   /* Start with a clean, empty 'searchObj' property in the data model if not
   empty already: */
   data.searchObjects = [];
+
+  /* Start without error messages: */
+  $emptyDiscMessage.classList.add('hidden');
 
   /* Remove any previous created 'li' elements from the DOM to display new
   results only: */
@@ -60,23 +63,32 @@ function searchEventHandler(event) {
     query
   );
   queryXhr.responseType = 'json';
-  queryXhr.addEventListener('load', function () {
+  queryXhr.addEventListener('load', () => {
     const responseObjectIds = queryXhr.response.objectIDs;
+    const totalObjs = queryXhr.response.total;
 
     /* Add response IDs to objIdArr array - *Test capturing only random Ids in
     API call for faster load times?*: */
-    for (const id of responseObjectIds) {
-      objIdArr.push(id);
+
+    if (totalObjs > 3) {
+      $emptyDiscMessage.classList.add('hidden');
+
+      for (const id of responseObjectIds) {
+        objIdArr.push(id);
+      }
+
+      // Call 'randomize' on 'objIdArr' array:
+      randomize(objIdArr);
+
+      /* Loop through 'randomObjIds' array and call 'getObjectInfo' on each ID in
+      the array: */
+      for (const objId of randomObjIds) {
+        getObjectInfo(objId);
+      }
+    } else {
+      $emptyDiscMessage.classList.remove('hidden');
     }
 
-    // Call 'randomize' on 'objIdArr' array:
-    randomize(objIdArr);
-
-    /* Loop through 'randomObjIds' array and call 'getObjectInfo' on each ID in
-    the array: */
-    for (const objId of randomObjIds) {
-      getObjectInfo(objId);
-    }
   });
 
   queryXhr.send();
@@ -217,8 +229,13 @@ function renderObjectInfo(object) {
 /* Listen for the 'DOMContentLoaded' event and add the 4 random objects to the
 Discoveries list: */
 function contentLoadedHandler(event) {
-  for (const randomObj of data.searchObjects) {
-    $discoveriesList.append(renderObjectInfo(randomObj));
+  if (data.searchObjects.length !== 0) {
+    $emptyDiscMessage.classList.add('hidden');
+    for (const randomObj of data.searchObjects) {
+      $discoveriesList.append(renderObjectInfo(randomObj));
+    }
+  } else {
+    $emptyDiscMessage.classList.remove('hidden');
   }
 
   // Add saved Items to the must-see list or show empty list error message:
@@ -256,7 +273,6 @@ function handleShowDiscoverClick(event) {
 }
 
 $discoverLink.addEventListener('click', handleShowDiscoverClick);
-$searchLink.addEventListener('click', handleShowDiscoverClick);
 
 /* Listen for clicks on discoveries ul and change the plus icon to a check
 mark icon: */
@@ -293,8 +309,6 @@ function addToMustSee(event) {
 }
 
 $discoveriesList.addEventListener('click', addToMustSee);
-
-// resume here
 
 // Define a function that returns a DOM tree for each saved object:
 function renderSavedObjectInfo(object) {
