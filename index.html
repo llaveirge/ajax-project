@@ -11,20 +11,23 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
 
+<body>
   <header>
     <div class="container">
       <div class="row">
         <div class="col-full display-flex align-items-baseline justify-space-between">
           <h1 class="nav-header-text">
-            <a href="#" class="view-link" id="discover-link">
-              <i id="palette-icon" class="fas fa-palette fa-xs view-link"></i>
+            <a href="#" class="disc-btn search" id="discover-link">
+              <i id="palette-icon" class="fas fa-palette fa-xs disc-btn search"
+              ></i>
               Discover
             </a>
           </h1>
           <nav>
-            <i id="must-see-icon" class="fas fa-list-ul fa-lg"></i>
+            <button id="must-see-nav" class="must-see" type="button">
+              <i id="must-see-icon" class="fas fa-list-ul fa-lg must-see"></i>
+            </button>
           </nav>
         </div>
       </div>
@@ -33,22 +36,30 @@
 
   <main>
     <div class="container">
-
       <div class="view" data-view="search-form" id="search-form">
         <div class="row">
           <div class="col-full display-flex justify-center">
             <div class="hero-img-container">
-              <img src="images/met-logo.jpg" class="hero-img" alt="The Met Logo" title="The Met">
+              <img
+                src="images/met-logo.jpg"
+                class="hero-img"
+                alt="The Met Logo"
+                title="The Met"
+              >
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-full">
-            <h2 class="discover-heading-text">Discover<br>
-              The Metropolitan Museum of Art</h2>
-            <hr class="search-hr">
+            <h2 class="discover">
+              Discover<br />
+              The Metropolitan Museum of Art
+            </h2>
+            <hr />
           </div>
         </div>
+
         <div class="search-div">
           <div class="row">
             <div class="col-full">
@@ -56,18 +67,21 @@
                 <div class="search-wrapper display-flex align-items-center">
                   <i class="fas fa-search fa-sm"></i>
                   <label>
-                    <input id="search" name="q" type="search" required>
+                    <input id="search" name="q" type="search" required />
                   </label>
                 </div>
               </form>
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-full display-flex justify-center">
             <div class="p-container">
-              <p class="discover-text">Enter a keyword or phrase to discover
-                unique objects within The Metropolitan Museum of Art collections.</p>
+              <p class="discover-text met-blue">
+                Enter a keyword or phrase to discover unique objects within The
+                Metropolitan Museum of Art collections.
+              </p>
             </div>
           </div>
         </div>
@@ -76,25 +90,71 @@
       <div class="view hidden" data-view="discoveries" id="discoveries">
         <div class="row">
           <div class="col-full">
-            <h2 class="discoveries-heading-text">Discoveries</h2>
-            <hr class="objects-hr">
+            <h2 class="section-heading">Discoveries</h2>
           </div>
         </div>
+
+        <div class="row hidden" id="empty-disc-msg">
+          <div class="col-full display-flex justify-center">
+            <div class="banner-container">
+              <img
+                src="images/met-gallery.webp"
+                class="banner-img"
+                alt="Image of American Wing Gallery at The Met taken by Robert Bye on Unsplash."
+                title="Discover The Met's Collections"
+              />
+            </div>
+          </div>
+          <div class="col-full">
+            <h2 class="error-msg met-red">
+              Hmmm... we can&apos;t find any items matching your search.
+            </h2>
+            <h3 class="error-msg drk-gry">
+              Please check your spelling or try
+              <a href="#" class="search link search-link">searching the
+              Metropolitan Museum of Art&apos;s Open Access collections</a> again
+              using a different search term or phrase.
+            </h3>
+          </div>
+        </div>
+
         <ul id="discoveries-list">
         </ul>
       </div>
 
-      <div class="view" data-view="must-see" id="must-see">
+      <div class="view hidden" data-view="must-see" id="must-see">
         <div class="row">
           <div class="col-full">
-            <h2 class="must-see-heading-text">Must-See List</h2>
-            <hr class="objects-hr">
+            <h2 class="section-heading">Must-See List</h2>
           </div>
         </div>
+
+        <div class="row" id="empty-saved-msg">
+          <div class="col-full display-flex justify-center">
+            <div class="banner-container">
+              <img
+                src="images/met-gallery.webp"
+                class="banner-img"
+                alt="Image of American Wing Gallery at The Met taken by Robert Bye on Unsplash."
+                title="Discover The Met's Collections"
+              />
+            </div>
+          </div>
+          <div class="col-full">
+            <h2 class="error-msg met-red">
+              No items have been added to your Must-See List yet.
+            </h2>
+            <h3 class="error-msg drk-gry">
+              <a href="#" class="search link search-link">Search the
+              Metropolitan Museum of Art&apos;s Open Access collections</a> and
+              add your favorite discoveries!
+            </h3>
+          </div>
+        </div>
+
         <ul id="must-see-list">
         </ul>
       </div>
-
     </div>
   </main>
 
