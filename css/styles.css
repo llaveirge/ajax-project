@@ -96,7 +96,7 @@ button.must-see:hover {
 }
 
 .fa-paint-brush {
-  font-size: 1.25rem;
+  /* font-size: 0.75rem; */
 }
 
 .fa-check {
@@ -137,6 +137,7 @@ button.must-see:hover {
   color: white;
   text-decoration: none;
   border-radius: 3px;
+  font-size: 0.75rem;
 }
 
 .button:hover,
@@ -183,6 +184,16 @@ button.must-see:hover {
   display: block;
   padding-bottom: 1rem;
   border-bottom: 2px solid #264d8f;
+}
+
+@media screen and (min-width: 320px) {
+  .fa-paint-brush {
+    font-size: 1.25rem;
+  }
+
+  .button {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (min-width: 750px) {

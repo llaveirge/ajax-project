@@ -111,9 +111,9 @@ input {
 }
 
 .button {
-  padding: 0.35rem;
-  padding-right: 0.8rem;
-  height: 32px;
+  padding: 0.4rem 0.35rem 0;
+  height: 30px;
+  min-width: 114px;
 }
 
 .search-wrapper {
@@ -126,8 +126,9 @@ input {
   width: 100%;
 }
 
-.gap-15 {
-  gap: 15px;
+.gap-15,
+.gap-10 {
+  gap: 10px;
 }
 
 .icon-button {
@@ -164,6 +165,18 @@ input {
 
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 320px) {
+  .gap-15 {
+    gap: 15px;
+  }
+
+  .button {
+    height: 32px;
+    padding: 0.35rem;
+    padding-right: 0.8rem;
+  }
 }
 
 @media screen and (min-width: 750px) {

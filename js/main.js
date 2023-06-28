@@ -383,7 +383,10 @@ function renderSavedObjectInfo(object) {
   /* Above (except for id) is same as previous render function *remove redundant
    code and make a single function* */
   const $savedIconDiv = document.createElement('div');
-  $savedIconDiv.setAttribute('class', 'display-flex align-items-center gap-15');
+  $savedIconDiv.setAttribute(
+    'class',
+    'display-flex align-items-center gap-10 gap-15'
+  );
   $buttonContainer.appendChild($savedIconDiv);
 
   const $seenButton = document.createElement('button');
