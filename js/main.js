@@ -80,8 +80,8 @@ function searchEventHandler(event) {
       // Call 'randomize' on 'objIdArr' array:
       randomize(objIdArr);
 
-      /* Loop through 'randomObjIds' array and call 'getObjectInfo' on each ID in
-      the array: */
+      /* Loop through 'randomObjIds' array and call 'getObjectInfo' on each ID
+      in the array: */
       for (const objId of randomObjIds) {
         getObjectInfo(objId);
       }
