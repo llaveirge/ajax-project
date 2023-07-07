@@ -131,6 +131,10 @@ input {
   gap: 10px;
 }
 
+.modal-gap {
+  gap: 22px 72px;
+}
+
 .icon-button {
   padding: 0;
 }
@@ -163,10 +167,6 @@ input {
   justify-content: center;
 }
 
-.hidden {
-  display: none;
-}
-
 .modal-container {
   display: flex;
   justify-content: center;
@@ -191,6 +191,15 @@ input {
   line-height: 1.5;
 }
 
+.button.modal-btn {
+  padding: 0.4rem 0.35rem;
+  width: 148px;
+}
+
+.hidden {
+  display: none;
+}
+
 @media screen and (min-width: 320px) {
   .gap-15 {
     gap: 15px;
@@ -204,6 +213,15 @@ input {
 }
 
 @media screen and (min-width: 750px) {
+  h2 {
+    margin: auto 0.5rem 1.625rem;
+  }
+
+  hr {
+    max-width: 31.125rem;
+    margin-bottom: 3.125rem;
+  }
+
   .container {
     max-width: 954px;
   }
@@ -221,12 +239,7 @@ input {
     padding-right: 1.75rem;
   }
 
-  h2 {
-    margin: auto 0.5rem 1.625rem;
-  }
-
-  hr {
-    max-width: 31.125rem;
-    margin-bottom: 3.125rem;
+  .remove-modal > p {
+    margin-top: 2rem;
   }
 }

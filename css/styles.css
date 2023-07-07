@@ -186,6 +186,25 @@ button.must-see:hover {
   background-color: rgba(51, 51, 51, 0.75);
 }
 
+.modal-btn {
+  border: none;
+}
+
+.modal-btn:hover {
+  cursor: pointer;
+}
+
+.cancel {
+  background-color: #b6b6b6;
+}
+
+.cancel:hover,
+.cancel:focus,
+.cancel:active,
+.cancel:focus-visible {
+  background-color: #333;
+}
+
 .remove-modal {
   background-color: #fff;
   font-weight: 700;
@@ -212,5 +231,9 @@ button.must-see:hover {
 
   h3 {
     font-size: 1.562rem;
+  }
+
+  .remove-modal > p {
+    font-size: 1.125rem;
   }
 }
