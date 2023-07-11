@@ -410,9 +410,14 @@ function renderSavedObjectInfo(object) {
 
   $seenButton.appendChild($eyeIcon);
 
+  const $deleteButton = document.createElement('button');
+  $deleteButton.setAttribute('class', 'icon-button delete-btn');
+  $deleteButton.setAttribute('type', 'button');
+  $savedIconDiv.appendChild($deleteButton);
+
   const $deleteIcon = document.createElement('i');
   $deleteIcon.setAttribute('class', 'delete fas fa-trash fa-lg');
-  $savedIconDiv.appendChild($deleteIcon);
+  $deleteButton.appendChild($deleteIcon);
 
   return $li;
 }
