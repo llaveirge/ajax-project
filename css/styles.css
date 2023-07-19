@@ -115,8 +115,14 @@ button.must-see:hover {
   cursor: pointer;
 }
 
-.icon-button:focus-visible > i {
-  color: #264d8f;
+.icon-button:hover > i.seen-button,
+.icon-button:focus-visible > i.seen-button {
+  color: #92a0b8;
+}
+
+.icon-button:hover > i.delete,
+.icon-button:focus-visible > i.delete {
+  color: #eb0029;
 }
 
 .met-blue {
@@ -137,7 +143,7 @@ button.must-see:hover {
 }
 
 .button:hover,
-.button:focus {
+.button:focus-visible {
   border: 1px solid #264d8f;
   background-color: #264d8f;
 }
