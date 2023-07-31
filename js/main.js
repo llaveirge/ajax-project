@@ -488,7 +488,6 @@ function handleHashChange(event) {
 
 window.addEventListener('hashchange', handleHashChange);
 
-// eslint-disable-next-line no-unused-vars
 function toggleModal() {
   if ($modalContainer.classList.contains('hidden')) {
     $modalContainer.classList.remove('hidden');
@@ -497,3 +496,13 @@ function toggleModal() {
     $modalContainer.classList.add('hidden');
   }
 }
+
+function showDelete(event) {
+  if (!event.target.matches('.delete')) {
+    return;
+  }
+
+  toggleModal();
+}
+
+$mustSeeList.addEventListener('click', showDelete);
