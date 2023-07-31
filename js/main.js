@@ -506,3 +506,13 @@ function showDelete(event) {
 }
 
 $mustSeeList.addEventListener('click', showDelete);
+
+function cancelDelete(event) {
+  if (!event.target.matches('.cancel')) {
+    return;
+  }
+
+  toggleModal();
+}
+
+$modalContainer.addEventListener('click', cancelDelete);
