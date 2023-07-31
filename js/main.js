@@ -11,6 +11,7 @@ const $mustSeeList = document.getElementById('must-see-list');
 const $mustSeeNav = document.getElementById('must-see-nav');
 const $emptySavedMessage = document.getElementById('empty-saved-msg');
 const $emptyDiscMessage = document.getElementById('empty-disc-msg');
+const $modalContainer = document.getElementById('modal-container');
 
 // Empty array to store Met object IDs in once acquired from the API
 let objIdArr = [];
@@ -486,3 +487,13 @@ function handleHashChange(event) {
 }
 
 window.addEventListener('hashchange', handleHashChange);
+
+// eslint-disable-next-line no-unused-vars
+function toggleModal() {
+  if ($modalContainer.classList.contains('hidden')) {
+    $modalContainer.classList.remove('hidden');
+
+  } else {
+    $modalContainer.classList.add('hidden');
+  }
+}
