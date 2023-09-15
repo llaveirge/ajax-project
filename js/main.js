@@ -532,6 +532,9 @@ function removeSavedObj(event) {
     }
   }
 
+  const savedLi = document.getElementById(data.deleteId);
+  savedLi.remove();
+
   toggleModal();
 }
 
