@@ -502,6 +502,10 @@ function showDelete(event) {
     return;
   }
 
+  const clickedLi = event.target.closest('li');
+  const clickedObjId = +clickedLi.id;
+
+  data.deleteId = clickedObjId;
   toggleModal();
 }
 
@@ -516,3 +520,19 @@ function cancelDelete(event) {
 }
 
 $modalContainer.addEventListener('click', cancelDelete);
+
+function removeSavedObj(event) {
+  if (!event.target.matches('.delete-saved')) {
+    return;
+  }
+
+  for (const savedObj of data.saved) {
+    if (savedObj.nextObjId === data.deleteId) {
+      data.saved.splice(data.saved.indexOf(savedObj), 1);
+    }
+  }
+
+  toggleModal();
+}
+
+$modalContainer.addEventListener('click', removeSavedObj);
