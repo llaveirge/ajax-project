@@ -535,6 +535,20 @@ function removeSavedObj(event) {
   const savedLi = document.getElementById(data.deleteId);
   savedLi.remove();
 
+  if (data.saved.length < 1) {
+    $emptySavedMessage.classList.remove('hidden');
+  }
+
+  for (let i = 0; i < data.searchObjects.length; i++) {
+    const curObj = data.searchObjects[i];
+    if ('nextObjId' in curObj) {
+      if (curObj.nextObjId === data.deleteId) {
+        curObj.saved = false;
+      }
+    }
+
+  }
+
   toggleModal();
 }
 
